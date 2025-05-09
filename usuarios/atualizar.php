@@ -46,7 +46,7 @@ if (isset($_POST['atualizar'])){
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input value="<?=$usuario['senha']?>" class="form-control" required type="text" name="senha" id="senha">
+                <input value="<?=$usuario['senha']?>" class="form-control" required type="password" name="senha" id="senha">
             </div>
             <div class="mb-3">
                 <label for="data_nascimento" class="form-label">Data de nascimento:</label>

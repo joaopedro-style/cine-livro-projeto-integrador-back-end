@@ -24,7 +24,7 @@ final class UsuarioServico
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->execute();
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (Throwable $erro) {
             throw new Exception("Erro ao carregar usuarios: " . $erro->getMessage());
         }
