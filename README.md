@@ -1,2 +1,2 @@
-# cine-livro-banco-de-dados
+# cine-livro-projeto-integrador-back-end
 
