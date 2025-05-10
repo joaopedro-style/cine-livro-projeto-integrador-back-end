@@ -1,5 +1,7 @@
 <?php
+
 use CineLivro\Services\UsuarioServico;
+
 require_once "../vendor/autoload.php";
 
 $usuarioServico = new UsuarioServico();
@@ -28,7 +30,7 @@ $quantidade = count($listaDeUsuarios);
 
 
         <table class="table table-hover table-bordered w-100">
-            <caption>Lista de Usuarios: <?=$quantidade?> </caption>
+            <caption>Lista de Usuarios: <?= $quantidade ?> </caption>
             <thead class="table-light">
                 <tr>
                     <th>ID</th>
@@ -39,19 +41,19 @@ $quantidade = count($listaDeUsuarios);
             </thead>
             <tbody>
 
-<?php foreach($listaDeUsuarios as $usuario) {?>
-                <tr>
-                    <td> <?= $usuario->getId() ?></td>
-                    <td> <?= $usuario->getNome() ?></td>
-                    <td> <?= $usuario->getEmail() ?></td>
-                    <td> <?= $usuario->getData_nascimento() ?></td>
-                    <td>
-                        <a class="btn btn-warning btn-sm" href="atualizar.php?id=<?=$usuario->getId()?>">Atualizar</a>
+                <?php foreach ($listaDeUsuarios as $usuario) { ?>
+                    <tr>
+                        <td> <?= $usuario->getId() ?></td>
+                        <td> <?= $usuario->getNome() ?></td>
+                        <td> <?= $usuario->getEmail() ?></td>
+                        <td> <?= $usuario->getData_nascimento() ?></td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="atualizar.php?id=<?= $usuario->getId() ?>">Atualizar</a>
 
-                        <a class="btn btn-danger btn-sm" href="excluir.php?id=<?=$usuario->getId()?>">Excluir</a>
-                    </td>
-                </tr>
-<?php } ?>
+                            <a class="btn btn-danger btn-sm" href="excluir.php?id=<?= $usuario->getId() ?>">Excluir</a>
+                        </td>
+                    </tr>
+                <?php } ?>
 
             </tbody>
         </table>

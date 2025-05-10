@@ -1,4 +1,5 @@
 <?php
+
 namespace CineLivro\Database;
 
 use Exception;
@@ -12,15 +13,16 @@ abstract class ConexaoBD
     private static string $senha = "";
     private static string $banco = "cine_livro";
 
-    public static function getConexao():PDO
+    public static function getConexao(): PDO
     {
-        if ( !isset(self::$conexao) ){
+        if (!isset(self::$conexao)) {
             try {
 
                 self::$conexao = new PDO(
-                    "mysql:host=".self::$servidor.";dbname=".self::$banco.";charset=utf8",
-                    self::$usuario, self::$senha
-            );
+                    "mysql:host=" . self::$servidor . ";dbname=" . self::$banco . ";charset=utf8",
+                    self::$usuario,
+                    self::$senha
+                );
 
                 self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (Throwable $erro) {

@@ -37,36 +37,34 @@ final class UsuarioServico
             }
 
             return $usuarios;
-
         } catch (Throwable $erro) {
             throw new Exception("Erro ao carregar usuarios: " . $erro->getMessage());
         }
     }
 
     public function buscarPorId(int $id): ?Usuario
-{
-    $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
-    try {
-        $consulta = $this->conexao->prepare($sql);
-        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
-        $consulta->execute();
+    {
+        $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
 
-        if ($dadosUsuario = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            return new Usuario(
-                $dadosUsuario['nome'],
-                $dadosUsuario['email'],
-                $dadosUsuario['senha'],
-                $dadosUsuario['data_nascimento'],
-                $dadosUsuario['id']
-            );
+            if ($dadosUsuario = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                return new Usuario(
+                    $dadosUsuario['nome'],
+                    $dadosUsuario['email'],
+                    $dadosUsuario['senha'],
+                    $dadosUsuario['data_nascimento'],
+                    $dadosUsuario['id']
+                );
+            }
+
+            return null;
+        } catch (Throwable $erro) {
+            throw new Exception("Erro ao buscar usuário: " . $erro->getMessage());
         }
-
-        return null;
-        
-    } catch (Throwable $erro) {
-        throw new Exception("Erro ao buscar usuário: " . $erro->getMessage());
     }
-}
 
     public function cadastrar(Usuario $usuario): void
     {
@@ -85,7 +83,7 @@ final class UsuarioServico
 
     public function atualizar(Usuario $usuario): void
     {
-        $sql = "UPDATE usuarios SET 
+        $sql = "UPDATE usuarios SET
                     nome = :nome, 
                     email = :email, 
                     senha = :senha, 

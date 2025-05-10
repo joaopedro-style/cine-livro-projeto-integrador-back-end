@@ -1,9 +1,11 @@
 <?php
+
 namespace CineLivro\Models;
 
 use InvalidArgumentException;
 
-final class Usuario {
+final class Usuario
+{
     private ?int $id;
     private string $nome;
     private string $email;
@@ -31,7 +33,6 @@ final class Usuario {
         if (empty($this->senha)) {
             throw new InvalidArgumentException("Senha é obrigatório");
         }
-        
     }
 
     public function getId(): ?int
