@@ -34,7 +34,7 @@ if (isset($_POST['atualizar'])){
         <hr>
 
         <form action="" method="post" class="w-25">
-            <input type="hidden" name="id" value="<?=$usuarios['id']?>">
+            <input type="hidden" name="id" value="<?=$usuario['id']?>">
 
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>

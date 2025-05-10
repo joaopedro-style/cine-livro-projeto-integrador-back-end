@@ -12,7 +12,7 @@ function listarUsuarios(PDO $conexao):array {
 
     return $consulta->fetchALL(PDO::FETCH_ASSOC);
     } catch (Exception $erro) {
-        die("Erro: ".$erro->getMessage());
+        die("Erro ao listar usuários: ".$erro->getMessage());
     }
 
     

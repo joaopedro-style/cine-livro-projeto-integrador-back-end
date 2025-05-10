@@ -76,7 +76,7 @@ final class Usuario {
 
     private function setSenha(string $senha): void
     {
-        $this->senha = $senha;
+        $this->senha = password_hash($senha, PASSWORD_DEFAULT);
     }
 
     private function setData_nascimento(string $data_nascimento): void
