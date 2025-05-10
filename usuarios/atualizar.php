@@ -1,9 +1,13 @@
 <?php
-require_once "../src/funcoes-usuarios.php";
+
+use CineLivro\Models\Usuario;
+use CineLivro\Services\UsuarioServico;
+
+require_once "../vendor/autoload.php";
+
+$usuarioServico = new UsuarioServico();
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
-
-$usuario = listarUmUsuario($conexao, $id);
 
 if (isset($_POST['atualizar'])){
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -11,7 +15,7 @@ if (isset($_POST['atualizar'])){
     $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $data_nascimento = filter_input(INPUT_POST, "data_nascimento", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    atualizarUsuario($conexao, $id, $nome, $email, $senha, $data_nascimento );
+    $usuario = new Usuario($nome, $email, $senha, $data_nascimento, $id);
 
     header("location:visualizar.php");
     exit;
