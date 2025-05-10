@@ -43,6 +43,31 @@ final class UsuarioServico
         }
     }
 
+    public function buscarPorId(int $id): ?Usuario
+{
+    $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
+    try {
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if ($dadosUsuario = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            return new Usuario(
+                $dadosUsuario['nome'],
+                $dadosUsuario['email'],
+                $dadosUsuario['senha'],
+                $dadosUsuario['data_nascimento'],
+                $dadosUsuario['id']
+            );
+        }
+
+        return null;
+        
+    } catch (Throwable $erro) {
+        throw new Exception("Erro ao buscar usuário: " . $erro->getMessage());
+    }
+}
+
     public function cadastrar(Usuario $usuario): void
     {
         $sql = "INSERT INTO usuarios (nome, email, senha, data_nascimento) VALUES(:nome, :email, :senha, :data_nascimento)";

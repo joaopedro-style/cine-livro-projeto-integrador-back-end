@@ -1,5 +1,6 @@
 <?php
 
+use CineLivro\Helpers\Utils;
 use CineLivro\Models\Usuario;
 use CineLivro\Services\UsuarioServico;
 
@@ -9,13 +10,29 @@ $usuarioServico = new UsuarioServico();
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
-if (isset($_POST['atualizar'])){
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $id) {
+    $usuario = $usuarioServico->buscarPorId($id);
+    if (!$usuario) {
+        echo "Usuário não encontrado!";
+        exit;
+    }
+}
+
+if (isset($_POST['atualizar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $data_nascimento = filter_input(INPUT_POST, "data_nascimento", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $usuario = new Usuario($nome, $email, $senha, $data_nascimento, $id);
+    if (empty($senha)) {
+        $senhaCodificada = $usuario->getSenha();
+    } else {
+        $senhaCodificada = Utils::codificarSenha($senha);
+    }
+
+    $usuarioAtualizado = new Usuario($nome, $email, $senhaCodificada, $data_nascimento, $id);
+
+    $usuarioServico->atualizar($usuarioAtualizado);
 
     header("location:visualizar.php");
     exit;
@@ -38,23 +55,23 @@ if (isset($_POST['atualizar'])){
         <hr>
 
         <form action="" method="post" class="w-25">
-            <input type="hidden" name="id" value="<?=$usuario['id']?>">
+            <input type="hidden" name="id" value="<?= $usuario->getId() ?>">
 
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome:</label>
-                <input value="<?=$usuario['nome']?>" class="form-control" required type="text" name="nome" id="nome">
+                <input value="<?= $usuario->getNome() ?>" class="form-control" required type="text" name="nome" id="nome">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input value="<?=$usuario['email']?>" class="form-control" required type="text" name="email" id="email">
+                <input value="<?= $usuario->getEmail() ?>" class="form-control" required type="text" name="email" id="email">
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input value="<?=$usuario['senha']?>" class="form-control" required type="password" name="senha" id="senha">
+                <input value="<?= $usuario->getSenha() ?>" class="form-control" required type="password" name="senha" id="senha">
             </div>
             <div class="mb-3">
                 <label for="data_nascimento" class="form-label">Data de nascimento:</label>
-                <input value="<?=$usuario['data_nascimento']?>" class="form-control" required type="date" name="data_nascimento" id="data_nascimento">
+                <input value="<?= $usuario->getData_nascimento() ?>" class="form-control" required type="date" name="data_nascimento" id="data_nascimento">
             </div>
             <button class="btn btn-warning" type="submit" name="atualizar">
                 Atualizar usuario</button>
