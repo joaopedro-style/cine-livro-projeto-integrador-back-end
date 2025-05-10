@@ -15,8 +15,6 @@ function listarUsuarios(PDO $conexao):array {
         die("Erro ao listar usuários: ".$erro->getMessage());
     }
 
-    
-
 }
 
 function cadastrarUsuario(PDO $conexao, string $nome, string $email, string $senha, string $data_nascimento):void{
