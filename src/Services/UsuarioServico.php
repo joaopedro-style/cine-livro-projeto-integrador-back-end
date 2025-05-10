@@ -23,7 +23,21 @@ final class UsuarioServico
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->execute();
-            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $usuarios = [];
+            while ($dadosUsuario = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $usuario = new Usuario(
+                    $dadosUsuario['nome'],
+                    $dadosUsuario['email'],
+                    $dadosUsuario['senha'],
+                    $dadosUsuario['data_nascimento'],
+                    $dadosUsuario['id']
+                );
+
+                $usuarios[] = $usuario;
+            }
+
+            return $usuarios;
+
         } catch (Throwable $erro) {
             throw new Exception("Erro ao carregar usuarios: " . $erro->getMessage());
         }

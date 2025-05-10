@@ -76,7 +76,11 @@ final class Usuario {
 
     private function setSenha(string $senha): void
     {
-        $this->senha = password_hash($senha, PASSWORD_DEFAULT);
+        if (!password_get_info($senha)['algo']) {
+            $this->senha = password_hash($senha, PASSWORD_DEFAULT);
+        } else {
+            $this->senha = $senha;
+        }
     }
 
     private function setData_nascimento(string $data_nascimento): void
