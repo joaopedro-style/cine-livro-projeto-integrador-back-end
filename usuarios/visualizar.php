@@ -43,8 +43,8 @@ $quantidade = count($listaDeUsuarios);
 
                 <?php foreach ($listaDeUsuarios as $usuario) { ?>
                     <tr>
-                        <td> <?= $usuario->getId() ?></td>
-                        <td> <?= $usuario->getNome() ?></td>
+                        <td> <?= $usuario['id'] ?></td>
+                        <td> <?= $usuario['nome'] ?></td>
                         <td> <?= $usuario->getEmail() ?></td>
                         <td> <?= $usuario->getData_nascimento() ?></td>
                         <td>
