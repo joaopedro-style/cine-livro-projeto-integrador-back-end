@@ -1023,7 +1023,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#?Usuario#</dia:string>
+            <dia:string>#?array#</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
             <dia:enum val="0"/>
@@ -3346,7 +3346,7 @@
         <dia:point val="40.4153,9.375"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="40.3653,3.975;51.6499,10.975"/>
+        <dia:rectangle val="40.3653,3.225;51.6499,10.175"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
