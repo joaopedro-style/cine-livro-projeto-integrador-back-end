@@ -71,7 +71,7 @@ final class UsuarioServico
             $consulta->bindValue(":nome", $usuario->getNome(), PDO::PARAM_STR);
             $consulta->bindValue(":email", $usuario->getEmail(), PDO::PARAM_STR);
             $consulta->bindValue(":senha", $usuario->getSenha(), PDO::PARAM_STR);
-            $consulta->bindValue(":data_nascimento", $usuario->getData_nascimento(), PDO::PARAM_STR);
+            $consulta->bindValue(":data_nascimento",$usuario->getData_nascimento(), PDO::PARAM_STR);
             $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
