@@ -29,14 +29,14 @@ final class UsuarioServico
         }
     }
 
-    public function buscarPorId(int $id): ?Usuario
+    public function buscarPorId(int $id): ?array
     {
-        $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
+        $sql = "SELECT * FROM usuarios WHERE id = :id";
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":id", $id, PDO::PARAM_INT);
             $consulta->execute();
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
         } catch (Throwable $erro) {
             throw new Exception("Erro ao buscar usuário: " . $erro->getMessage());
         }

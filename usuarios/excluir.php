@@ -8,21 +8,12 @@ $usuarioServico = new UsuarioServico();
 
 $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 
-if (!$id) {
-    echo "ID inválido ou ausente.";
+if (isset($_GET['confirmar-exclusao'])) {
+    $usuarioServico->excluir($id);
+    header("location:visualizar.php");
     exit;
 }
 
-if (isset($_GET['confirmar-exclusao']) && $id) {
-    $usuario = $usuarioServico->buscarPorId($id);
-
-    if ($usuario) {
-        $usuarioServico->excluir($usuario->getId());
-
-        header("location:visualizar.php");
-        exit;
-    }
-}
 ?>
 
 <!DOCTYPE html>

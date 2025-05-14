@@ -45,12 +45,12 @@ $quantidade = count($listaDeUsuarios);
                     <tr>
                         <td> <?= $usuario['id'] ?></td>
                         <td> <?= $usuario['nome'] ?></td>
-                        <td> <?= $usuario->getEmail() ?></td>
-                        <td> <?= $usuario->getData_nascimento() ?></td>
+                        <td> <?= $usuario['email'] ?></td>
+                        <td> <?= $usuario['data_nascimento'] ?></td>
                         <td>
-                            <a class="btn btn-warning btn-sm" href="atualizar.php?id=<?= $usuario->getId() ?>">Atualizar</a>
+                            <a class="btn btn-warning btn-sm" href="atualizar.php?id=<?= $usuario['id'] ?>">Atualizar</a>
 
-                            <a class="btn btn-danger btn-sm" href="excluir.php?id=<?= $usuario->getId() ?>">Excluir</a>
+                            <a class="btn btn-danger btn-sm" href="excluir.php?id=<?= $usuario['id'] ?>">Excluir</a>
                         </td>
                     </tr>
                 <?php } ?>
