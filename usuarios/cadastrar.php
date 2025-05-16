@@ -6,7 +6,14 @@ use CineLivro\Helpers\Utils;
 
 require_once "../vendor/autoload.php";
 
-$usuarioServico = new UsuarioServico();
+$mensagemDeErro = "";
+
+try {
+    $usuarioServico = new UsuarioServico();
+} catch (Throwable $erro) {
+    Utils::registrarLog($erro);
+    $mensagemDeErro = "Houve um erro ao carregar os dados. Fale com o Suporte.";
+}
 
 if (isset($_POST['cadastrar'])) {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -15,12 +22,15 @@ if (isset($_POST['cadastrar'])) {
     $senhaCodificada = Utils::codificarSenha($senha);
     $data_nascimento = filter_input(INPUT_POST, "data_nascimento", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $usuario = new Usuario($nome, $email, $senhaCodificada, $data_nascimento);
-
-    $usuarioServico->cadastrar($usuario);
-
-    header("location:visualizar.php");
-    exit;
+    try {
+        $usuario = new Usuario($nome, $email, $senhaCodificada, $data_nascimento);
+        $usuarioServico->cadastrar($usuario);
+        header("location:visualizar.php");
+        exit;
+    } catch (Throwable $erro) {
+        Utils::registrarLog($erro);
+        $mensagemDeErro = "Houve um erro ao cadastrar Usuario. Fale com o Suporte.";
+    }
 }
 ?>
 

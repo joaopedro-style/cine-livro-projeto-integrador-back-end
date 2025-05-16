@@ -1,12 +1,19 @@
 <?php
-
+use CineLivro\Helpers\Utils;
 use CineLivro\Services\UsuarioServico;
 
 require_once "../vendor/autoload.php";
 
-$usuarioServico = new UsuarioServico();
-$listaDeUsuarios = $usuarioServico->listarTodos();
-$quantidade = count($listaDeUsuarios);
+$mensagemDeErro = "";
+
+try {
+    $usuarioServico = new UsuarioServico();
+    $listaDeUsuarios = $usuarioServico->listarTodos();
+    $quantidade = count($listaDeUsuarios);
+} catch (Throwable $erro) {
+    Utils::registrarLog($erro);
+    $mensagemDeErro = "Houve um erro ao carregar os dados. Fale com o Suporte.";
+}
 ?>
 
 <!DOCTYPE html>

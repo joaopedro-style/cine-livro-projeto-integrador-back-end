@@ -1,17 +1,29 @@
 <?php
 
+use CineLivro\Helpers\Utils;
 use CineLivro\Services\UsuarioServico;
 
 require_once "../vendor/autoload.php";
 
-$usuarioServico = new UsuarioServico();
+$mensagemDeErro = "";
 
-$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+try {
+    $usuarioServico = new UsuarioServico();
+    $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+} catch (Throwable $erro) {
+    Utils::registrarLog($erro);
+    $mensagemDeErro = "Houve um erro ao carregar os dados. Fale com o Suporte.";
+}
 
 if (isset($_GET['confirmar-exclusao'])) {
-    $usuarioServico->excluir($id);
-    header("location:visualizar.php");
-    exit;
+    try {
+        $usuarioServico->excluir($id);
+        header("location:visualizar.php");
+        exit;
+    } catch (Throwable $erro) {
+        Utils::registrarLog($erro);
+        $mensagemDeErro = "Houve um erro ao excluir Usuarios. Fale com o Suporte.";
+    }
 }
 
 ?>

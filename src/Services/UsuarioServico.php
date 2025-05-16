@@ -3,6 +3,7 @@
 namespace CineLivro\Services;
 
 use CineLivro\Database\ConexaoBD;
+use CineLivro\Helpers\Utils;
 use Exception;
 use CineLivro\Models\Usuario;
 use PDO;
@@ -25,7 +26,8 @@ final class UsuarioServico
             $consulta->execute();
             return $consulta->fetchALL(PDO::FETCH_ASSOC);
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao carregar usuarios: " . $erro->getMessage());
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao carregar usuarios");
         }
     }
 
@@ -38,7 +40,8 @@ final class UsuarioServico
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao buscar usuário: " . $erro->getMessage());
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao buscar usuário");
         }
     }
 
@@ -53,7 +56,8 @@ final class UsuarioServico
             $consulta->bindValue(":data_nascimento", $usuario->getData_nascimento(), PDO::PARAM_STR);
             $consulta->execute();
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao inserir usuarios: " . $erro->getMessage());
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao inserir usuarios");
         }
     }
 
@@ -75,7 +79,8 @@ final class UsuarioServico
             $consulta->bindValue(":id", $usuario->getId(), PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao atualizar usuário: " . $erro->getMessage());
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao atualizar usuário");
         }
     }
 
@@ -88,7 +93,8 @@ final class UsuarioServico
             $consulta->bindValue(":id", $id, PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
-            throw new Exception("Erro ao excluir usuário: " . $erro->getMessage());
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao excluir usuário");
         }
     }
 }
