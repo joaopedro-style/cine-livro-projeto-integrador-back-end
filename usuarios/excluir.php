@@ -7,9 +7,10 @@ require_once "../vendor/autoload.php";
 
 $mensagemDeErro = "";
 
+$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
+
 try {
     $usuarioServico = new UsuarioServico();
-    $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 } catch (Throwable $erro) {
     Utils::registrarLog($erro);
     $mensagemDeErro = "Houve um erro ao carregar os dados. Fale com o Suporte.";
