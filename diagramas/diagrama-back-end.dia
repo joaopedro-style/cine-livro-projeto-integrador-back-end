@@ -2071,7 +2071,7 @@
             </dia:composite>
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#usuarioId#</dia:string>
+                <dia:string>#usuario_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -2088,7 +2088,7 @@
             </dia:composite>
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#generoId#</dia:string>
+                <dia:string>#genero_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -2984,13 +2984,13 @@
         <dia:point val="51.6502,0.725"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.6002,0.675;73.3752,7.375"/>
+        <dia:rectangle val="51.6002,0.675;74.1452,7.375"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="51.6502,0.725"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="21.675000000000001"/>
+        <dia:real val="22.445"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="6.6000000000000005"/>
@@ -3217,7 +3217,7 @@
           <dia:attribute name="parameters">
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#usuarioId#</dia:string>
+                <dia:string>#usuario_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -3234,7 +3234,7 @@
             </dia:composite>
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#filmeId#</dia:string>
+                <dia:string>#filme_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -3282,7 +3282,7 @@
           <dia:attribute name="parameters">
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#usuarioId#</dia:string>
+                <dia:string>#usuario_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -3299,7 +3299,7 @@
             </dia:composite>
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#filmeId#</dia:string>
+                <dia:string>#filme_id#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
                 <dia:string>#int#</dia:string>
@@ -3395,17 +3395,17 @@
     </dia:object>
     <dia:object type="UML - Dependency" version="1" id="O9">
       <dia:attribute name="obj_pos">
-        <dia:point val="62.4877,0.674591"/>
+        <dia:point val="62.8727,0.674591"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="62.4377,-31.3745;63.6126,0.724591"/>
+        <dia:rectangle val="62.7126,-31.3745;63.6126,0.724591"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="62.4877,0.674591"/>
-        <dia:point val="62.4877,-14.925"/>
+        <dia:point val="62.8727,0.674591"/>
+        <dia:point val="62.8727,-14.925"/>
         <dia:point val="63.1626,-14.925"/>
         <dia:point val="63.1626,-30.9245"/>
       </dia:attribute>
