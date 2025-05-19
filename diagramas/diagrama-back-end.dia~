@@ -6016,19 +6016,19 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="30.71,-71.4"/>
+        <dia:point val="39.9852,-80.9834"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="30.66,-80.8;40.25,-70.6"/>
+        <dia:rectangle val="30.66,-81.7834;40.0352,-67"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="30.71,-71.4"/>
-        <dia:point val="35.455,-71.4"/>
-        <dia:point val="35.455,-80"/>
-        <dia:point val="40.2,-80"/>
+        <dia:point val="39.9852,-80.9834"/>
+        <dia:point val="35.3476,-80.9834"/>
+        <dia:point val="35.3476,-67.8"/>
+        <dia:point val="30.71,-67.8"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="0"/>
@@ -6045,8 +6045,7 @@
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O10" connection="4"/>
-        <dia:connection handle="1" to="O15" connection="16"/>
+        <dia:connection handle="1" to="O10" connection="15"/>
       </dia:connections>
     </dia:object>
   </dia:layer>
