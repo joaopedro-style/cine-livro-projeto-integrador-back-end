@@ -8,7 +8,7 @@ use Exception;
 use PDO;
 use Throwable;
 
-final class FilmeServico
+final class LivroServico
 {
     private PDO $conexao;
 
@@ -20,10 +20,10 @@ final class FilmeServico
     public function buscar(string $termo): array
     {
         try {
-            $sql = " SELECT * FROM filmes
+            $sql = " SELECT * FROM livros
             WHERE titulo LIKE :termo 
-               OR diretor LIKE :termo 
-               OR classificacao LIKE :termo
+               OR autor LIKE :termo 
+               OR faixa_etaria LIKE :termo
                OR genero_id LIKE :termo 
                OR data_lancamento LIKE :termo
             ORDER BY titulo ASC ";
@@ -33,17 +33,17 @@ final class FilmeServico
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
-            throw new Exception("Erro ao buscar filmes. Fale com o Suporte.");
+            throw new Exception("erro ao buscar livros. Fale com o Suporte.");
         }
     }
 
-    public function adicionarAosFavoritos(int $usuario_id, int $filme_id): void
+    public function adicionarAosFavoritos(int $usuario_id, int $livro_id): void
     {
         try {
-            $sql = "INSERT INTO filmes_favoritos (usuario_id, filme_id) VALUES (:usuarioId, :filmeId)";
+            $sql = "INSERT INTO livros_favoritos (usuario_id, livro_id) VALUES (:usuarioId, :livroId)";
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(':usuarioId', $usuario_id);
-            $consulta->bindValue(':filmeId', $filme_id);
+            $consulta->bindValue(':livroId', $livro_id);
             $consulta->execute();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
@@ -51,13 +51,13 @@ final class FilmeServico
         }
     }
 
-    public function removerDosFavoritos(int $usuario_id, int $filme_id): void
+    public function removerDosFavoritos(int $usuario_id, int $livro_id): void
     {
         try {
-            $sql = "DELETE FROM filmes_favoritos WHERE usuario_id = :usuarioId AND filme_id = :filmeId";
+            $sql = "DELETE FROM livros_favoritos WHERE usuario_id = :usuarioId AND livro_id = :livroId";
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(':usuarioId', $usuario_id);
-            $consulta->bindValue(':filmeId', $filme_id);
+            $consulta->bindValue(':livroId', $livro_id);
             $consulta->execute();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
