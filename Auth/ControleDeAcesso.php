@@ -28,4 +28,22 @@ final class ControleDeAcesso
         $_SESSION['nome'] = $nome;
         $_SESSION['tipo'] = $tipo;
     }
+
+    public static function logout():void
+    {
+        self::iniciarsessao();
+        session_destroy();
+        header("location:../login.php?logout");
+        exit;
+    }
+
+    public static function exigirAdmin():void
+    {
+        self::iniciarsessao();
+
+        if($_SESSION['tipo'] !== 'admin'){
+            header("location:nao-autorizado.php");
+            exit;
+        }
+    }
 }
