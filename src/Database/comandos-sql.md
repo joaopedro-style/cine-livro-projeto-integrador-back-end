@@ -25,7 +25,8 @@ CREATE TABLE usuarios (
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE,
   senha VARCHAR(255) NOT NULL, 
-  data_nascimento DATE NOT NULL
+  data_nascimento DATE NOT NULL,
+  tipo ENUM('admin', 'padrão') NOT NULL
 );
 ```
 
