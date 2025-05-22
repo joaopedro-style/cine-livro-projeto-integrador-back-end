@@ -97,4 +97,18 @@ final class UsuarioServico
             throw new Exception("Erro ao excluir usuário");
         }
     }
+
+    public function buscaPorEmail(string $email): ?array
+    {
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":email", $email, PDO::PARAM_STR);
+            $consulta->execute();
+            return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao buscar usuário por e-mail.");
+        }
+    }
 }
