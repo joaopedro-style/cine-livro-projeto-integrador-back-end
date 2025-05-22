@@ -1,36 +1,41 @@
 # Inserindo os dados
 
 ```sql
-INSERT INTO usuarios(nome, email, senha, data_nascimento)
+INSERT INTO usuarios(nome, email, senha, data_nascimento, tipo)
 VALUES(
-    'Ana Paula Ferreira',
-    'ana.ferreira@email.com',
-    'AnaP@2025',
-    '1990-03-12'
+    'joão pedro',
+    'joaopedro18231@hotmail.com',
+    '1234567tigre',
+    '1997-01-26',
+    'admin'
 ),
 (
     'Carlos Eduardo Lima',
     'carlos.lima@email.com',
     'CarLima#89',
-    '1989-11-28'
+    '1989-11-28',
+    'padrão'
 ),
 (
     'Júlia Mendes Rocha',
     'julia.rocha@email.com',
     'JuRo@2023',
-    '1995-07-05'
+    '1995-07-05',
+    'padrão'
 ),
 (
     'Roberto da Silva Neto',
     'roberto.silva@email.com',
     'RobSilv@12',
-    '1985-02-19'
+    '1985-02-19',
+    'padrão'
 ),
 (
     'Mariana Costa Andrade',
     'mariana.andrade@email.com',
     'MarAnd#33',
-    '1993-09-23'
+    '1993-09-23',
+    'padrão'
 );
 ```
 

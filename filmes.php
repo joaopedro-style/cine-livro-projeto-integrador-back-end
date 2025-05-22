@@ -27,7 +27,7 @@
                 </div>
                 <nav>
                     <ul class="nav navbar-cinelivro">
-                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Início</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>
@@ -61,7 +61,7 @@
                                         <h4 class="card-title mb-1">Duna: Parte Dois</h4>
                                         <div class="card-actions">
                                             <button class="favorite-button">
-                                                <i class="fas fa-heart"></i>
+                                                <i class="fas fa-heart"></i> Adicionar aos Favoritos
                                             </button>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                         <h4 class="card-title mb-1">Godzilla e Kong: O Novo Império</h4>
                                         <div class="card-actions">
                                             <button class="favorite-button">
-                                                <i class="fas fa-heart"></i>
+                                                <i class="fas fa-heart"></i> Adicionar aos Favoritos
                                             </button>
                                         </div>
                                     </div>
@@ -155,7 +155,7 @@
             <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
             <nav>
                 <ul class="nav navbar-cinelivro">
-                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Index</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                     <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>

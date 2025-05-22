@@ -28,7 +28,7 @@
                 </div>
                 <nav>
                     <ul class="nav navbar-cinelivro">
-                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Index</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>
@@ -49,26 +49,7 @@
                 <p class="profile-email"><i class="fas fa-envelope"></i> usuario@email.com</p>
                 <div class="profile-actions">
                     <button class="edit-button"><i class="fas fa-edit"></i> Editar Perfil</button>
-                    <button class="edit-button"><i class="fas fa-cog"></i> Configurações</button>
                 </div>
-            </div>
-        </div>
-
-        <div class="profile-stats">
-            <div class="stat-card">
-                <i class="fas fa-book-open stat-icon"></i>
-                <div class="stat-number">15</div>
-                <div class="stat-label">Livros Lidos</div>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-film stat-icon"></i>
-                <div class="stat-number">8</div>
-                <div class="stat-label">Filmes Assistidos</div>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-star stat-icon"></i>
-                <div class="stat-number">23</div>
-                <div class="stat-label">Total de Avaliações</div>
             </div>
         </div>
 
@@ -161,7 +142,6 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="review-date">Avaliado em: 01/01/2024</p>
                     </div>
                 </div>
             </div>
@@ -174,7 +154,7 @@
             <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
             <nav>
                 <ul class="nav navbar-cinelivro">
-                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Index</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                     <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>

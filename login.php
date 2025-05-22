@@ -21,7 +21,7 @@
             <div class="d-flex align-items-center">
                 <nav>
                     <ul class="nav navbar-cinelivro">
-                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Index</a></li>
+                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>
@@ -60,7 +60,6 @@
                         <button type="submit" class="btn btn-primary w-100 mb-3">Entrar</button>
                         <div class="text-center">
                             <p class="mb-2">Não tem uma conta? <a href="cadastro.php" class="text-primary">Cadastre-se</a></p>
-                            <a href="#" class="text-muted">Esqueceu sua senha?</a>
                         </div>
                     </form>
                 </div>
@@ -73,7 +72,7 @@
             <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
             <nav>
                 <ul class="nav navbar-cinelivro">
-                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Index</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                     <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>
