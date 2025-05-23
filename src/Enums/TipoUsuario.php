@@ -1,6 +1,6 @@
 <?php
 namespace CineLivro\Enums;
-enum TipoUsuario:string {
+enum TipoUsuario: string {
     case ADMIN = 'admin';
-    case PADRÃO = 'padrão';
+    case PADRÃO = 'padrao';
 }

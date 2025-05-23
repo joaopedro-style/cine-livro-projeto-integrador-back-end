@@ -1,7 +1,9 @@
 <?php
 
+use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
 use CineLivro\Helpers\Validacoes;
+use CineLivro\Models\Usuario;
 use CineLivro\Services\UsuarioServico;
 
 require_once "../vendor/autoload.php";
@@ -21,8 +23,24 @@ if(isset($_POST['cadastrar'])) {
         Validacoes::validarSenha($senhaBruta);
         $senha = Utils::codificarSenha($senhaBruta);
 
-        $data_nascimento = 
-    }
+        $data_nascimento = Utils::formataData($_POST["data_nascimento"]);
+		Validacoes::validarDataNascimento($data_nascimento);
+
+		$tipoStr = $_POST["tipo"];
+		Validacoes::validarTipo($tipoStr);
+		$tipo = TipoUsuario::from($tipoStr);
+
+		$usuario = new Usuario($nome, $email, $senha, $data_nascimento, $tipo);
+		$usuarioServico->cadastrar($usuario);
+
+		header("location:usuarios.php");
+		exit;
+    } catch (Throwable $erro) {
+		$mensagemDeErro = $erro->getMessage();
+	} catch (Throwable $erro) {
+		$mensagemDeErro = "Erro ao cadastrar usuário.";
+		Utils::registrarLog($erro);
+	}
 }
 
 ?>
@@ -40,7 +58,7 @@ if(isset($_POST['cadastrar'])) {
 		<?php endif; ?>
 
 
-		<form class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir">
+		<form class="mx-auto w-75" action="" method="post" id="form-cadastrar" name="form-cadastrar">
 
 			<div class="mb-3">
 				<label class="form-label" for="nome">Nome:</label>
@@ -66,12 +84,12 @@ if(isset($_POST['cadastrar'])) {
 				<label class="form-label" for="tipo">Tipo (usuario padrão é o padrão):</label>
 				<select class="form-select" name="tipo" id="tipo">
 					<option value=""></option>
-					<option value="editor" selected>padrão</option>
+					<option value="padrao" selected>padrao</option>
 					<option value="admin">Administrador</option>
 				</select>
 			</div>
 
-			<button class="btn btn-primary" id="inserir" name="inserir"><i class="bi bi-save"></i> Inserir</button>
+			<button class="btn btn-primary" id="cadastrar" name="cadastrar"><i class="bi bi-save"></i> Cadastrar</button>
 		</form>
 
 	</article>

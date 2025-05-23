@@ -8,7 +8,9 @@ use InvalidArgumentException;
 
 final class Validacoes
 {
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function validarNome(string $nome): void
     {
@@ -69,7 +71,7 @@ final class Validacoes
         $dataFormatada = DateTime::createFromFormat('Y-m-d', $data);
 
         if (!$dataFormatada || $dataFormatada->format('Y-m-d') !== $data) {
-            throw new InvalidArgumentException("Formato de data inválido. Use o formato YYYY-MM-DD.");
+            throw new InvalidArgumentException("Formato de data inválido.");
         }
 
         if ($dataFormatada > new DateTime()) {
@@ -100,6 +102,20 @@ final class Validacoes
             throw new InvalidArgumentException("Classificação inválida.");
         }
     }
+
+    public static function validarDataNascimento(string $dataNascimento): void
+    {
+        if (empty($dataNascimento)) {
+            throw new InvalidArgumentException("A data de nascimento é obrigatória.");
+        }
+        $data = DateTime::createFromFormat('Y-m-d', $dataNascimento);
+        $erros = DateTime::getLastErrors();
+
+        if ($data === false || $erros['warning_count'] > 0 || $erros['error_count'] > 0) {
+            throw new InvalidArgumentException("Data de nascimento inválida.");
+        }
+    }
+
 
     public static function validarFaixaEtaria(string $faixa): void
     {

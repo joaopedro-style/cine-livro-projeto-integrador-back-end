@@ -2,6 +2,7 @@
 
 namespace CineLivro\Models;
 
+use CineLivro\Enums\TipoUsuario;
 use InvalidArgumentException;
 
 final class Usuario
@@ -11,14 +12,25 @@ final class Usuario
     private string $email;
     private string $senha;
     private string $data_nascimento;
+    private TipoUsuario $tipo;
 
-    public function __construct(string $nome, string $email, string $senha, string $data_nascimento, ?int $id = null)
+    public function __construct(string $nome, string $email, string $senha, string $data_nascimento, TipoUsuario $tipo = TipoUsuario::PADRÃO, ?int $id = null)
     {
         $this->setId($id);
         $this->setNome($nome);
         $this->setEmail($email);
         $this->setSenha($senha);
         $this->setData_nascimento($data_nascimento);
+    }
+
+    public function getTipoUsuario(): TipoUsuario
+    {
+        return $this->tipo;
+    }
+
+    private function setTipoUsuario(TipoUsuario $tipo): void
+    {
+        $this->tipo = $tipo;
     }
 
     public function getId(): ?int
@@ -63,11 +75,8 @@ final class Usuario
 
     private function setSenha(string $senha): void
     {
-        if (!password_get_info($senha)['algo']) {
-            $this->senha = password_hash($senha, PASSWORD_DEFAULT);
-        } else {
-            $this->senha = $senha;
-        }
+        $this->senha = $senha;
+        
     }
 
     private function setData_nascimento(string $data_nascimento): void
