@@ -19,20 +19,6 @@ final class Usuario
         $this->setEmail($email);
         $this->setSenha($senha);
         $this->setData_nascimento($data_nascimento);
-        $this->validar();
-    }
-
-    private function validar(): void
-    {
-        if (empty($this->nome)) {
-            throw new InvalidArgumentException("Nome é obrigatório");
-        }
-        if (empty($this->email)) {
-            throw new InvalidArgumentException("Email é obrigatório");
-        }
-        if (empty($this->senha)) {
-            throw new InvalidArgumentException("Senha é obrigatório");
-        }
     }
 
     public function getId(): ?int

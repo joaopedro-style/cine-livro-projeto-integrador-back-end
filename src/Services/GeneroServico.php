@@ -18,6 +18,19 @@ final class GeneroServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
+    public function listarTodos(): array
+    {
+        $sql = "SELECT * FROM generos ORDER BY nome";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            return $consulta->fetchALL(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao carregar generos");
+        }
+    }
+
     public function buscarPorId(int $id): ?array
     {
         $sql = "SELECT * FROM generos WHERE id = :id";

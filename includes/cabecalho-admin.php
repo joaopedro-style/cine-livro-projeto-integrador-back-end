@@ -36,6 +36,7 @@
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Usuário</a></li>
+                        <li></li>
                     </ul>
                 </nav>
                 <div class="dropdown">
