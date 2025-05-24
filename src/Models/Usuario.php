@@ -3,7 +3,6 @@
 namespace CineLivro\Models;
 
 use CineLivro\Enums\TipoUsuario;
-use InvalidArgumentException;
 
 final class Usuario
 {
@@ -21,6 +20,7 @@ final class Usuario
         $this->setEmail($email);
         $this->setSenha($senha);
         $this->setData_nascimento($data_nascimento);
+        $this->setTipoUsuario($tipo);
     }
 
     public function getTipoUsuario(): TipoUsuario

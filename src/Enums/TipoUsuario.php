@@ -2,5 +2,5 @@
 namespace CineLivro\Enums;
 enum TipoUsuario: string {
     case ADMIN = 'admin';
-    case PADRÃO = 'padrao';
+    case PADRÃO = 'padrão';
 }

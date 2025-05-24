@@ -1,29 +1,31 @@
 <?php
+require_once "../vendor/autoload.php";
 
+use CineLivro\Auth\ControleDeAcesso;
 use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
 use CineLivro\Helpers\Validacoes;
 use CineLivro\Models\Usuario;
 use CineLivro\Services\UsuarioServico;
 
-require_once "../vendor/autoload.php";
+ControleDeAcesso::exigirAdmin();
 
 $mensagemDeErro = "";
 $usuarioServico = new UsuarioServico();
 
-if(isset($_POST['cadastrar'])) {
-    try {
-        $nome = Utils::sanitizar($_POST["nome"]);
-        Validacoes::validarNome($nome);
+if (isset($_POST['cadastrar'])) {
+	try {
+		$nome = Utils::sanitizar($_POST["nome"]);
+		Validacoes::validarNome($nome);
 
-        $email = Utils::sanitizar($_POST["email"], 'email');
-        Validacoes::validarEmail($email);
+		$email = Utils::sanitizar($_POST["email"], 'email');
+		Validacoes::validarEmail($email);
 
-        $senhaBruta = $_POST["senha"];
-        Validacoes::validarSenha($senhaBruta);
-        $senha = Utils::codificarSenha($senhaBruta);
+		$senhaBruta = $_POST["senha"];
+		Validacoes::validarSenha($senhaBruta);
+		$senha = Utils::codificarSenha($senhaBruta);
 
-        $data_nascimento = Utils::formataData($_POST["data_nascimento"]);
+		$data_nascimento = Utils::formataData($_POST["data_nascimento"]);
 		Validacoes::validarDataNascimento($data_nascimento);
 
 		$tipoStr = $_POST["tipo"];
@@ -35,8 +37,6 @@ if(isset($_POST['cadastrar'])) {
 
 		header("location:usuarios.php");
 		exit;
-    } catch (Throwable $erro) {
-		$mensagemDeErro = $erro->getMessage();
 	} catch (Throwable $erro) {
 		$mensagemDeErro = "Erro ao cadastrar usuário.";
 		Utils::registrarLog($erro);
@@ -75,7 +75,7 @@ if(isset($_POST['cadastrar'])) {
 				<input class="form-control" type="password" id="senha" name="senha">
 			</div>
 
-            <div class="mb-3">
+			<div class="mb-3">
 				<label class="form-label" for="data_nascimento">Data de Nascimento:</label>
 				<input class="form-control" type="date" id="data_nascimento" name="data_nascimento">
 			</div>
@@ -84,7 +84,7 @@ if(isset($_POST['cadastrar'])) {
 				<label class="form-label" for="tipo">Tipo (usuario padrão é o padrão):</label>
 				<select class="form-select" name="tipo" id="tipo">
 					<option value=""></option>
-					<option value="padrao" selected>padrao</option>
+					<option value="padrão" selected>padrão</option>
 					<option value="admin">Administrador</option>
 				</select>
 			</div>

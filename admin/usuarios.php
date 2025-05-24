@@ -7,7 +7,7 @@ use CineLivro\Services\UsuarioServico;
 ControleDeAcesso::exigirAdmin();
 
 $usuarioServico = new UsuarioServico();
-$listaDeUsuario = $usuarioServico->listarTodos();
+$listaDeUsuarios = $usuarioServico->listarTodos();
 ?>
 <article class="col-12 bg-white rounded shadow my-1 py-4">
 
@@ -30,6 +30,7 @@ $listaDeUsuario = $usuarioServico->listarTodos();
 					<th>senha</th>
 					<th>data_nascimento</th>
 					<th>Tipo</th>
+					<th class="text-center">Ações</th>
 				</tr>
 			</thead>
 
