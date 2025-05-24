@@ -15,7 +15,7 @@ $listaDeUsuarios = $usuarioServico->listarTodos();
 		Usuários <span class="badge bg-dark"> <?= count($listaDeUsuarios) ?> </span></h2>
 
 	<p class="text-center mt-5">
-		<a class="btn btn-primary" href="usuario-insere.php">
+		<a class="btn btn-primary" href="usuario-cadastra.php">
 			<i class="bi bi-plus-circle"></i>
 			Inserir novo usuário</a>
 	</p>

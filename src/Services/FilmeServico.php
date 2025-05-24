@@ -3,7 +3,9 @@
 namespace CineLivro\Services;
 
 use CineLivro\Database\ConexaoBD;
+use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
+use CineLivro\Models\Filme;
 use Exception;
 use PDO;
 use Throwable;
@@ -17,18 +19,157 @@ final class FilmeServico
         $this->conexao = ConexaoBD::getConexao();
     }
 
+    public function listarTodos(TipoUsuario $tipoUsuario): array
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado. Somente administradores podem listar todos os filmes.");
+        }
+
+        $sql = "SELECT filmes.id, filmes.titulo, filmes.diretor, filmes.data_lancamento,
+                   filmes.duracao, filmes.classificacao, filmes.descricao,
+                   filmes.poster_url, generos.nome AS genero
+            FROM filmes
+            INNER JOIN generos ON filmes.genero_id = generos.id
+            ORDER BY filmes.data_lancamento DESC";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao listar filmes.");
+        }
+    }
+
+    public function buscarPorId(int $id, TipoUsuario $tipoUsuario): ?array
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado. Somente administradores podem buscar filmes por ID.");
+        }
+
+        $sql = "SELECT filmes.id, filmes.titulo, filmes.diretor, filmes.data_lancamento,
+                   filmes.duracao, filmes.classificacao, filmes.descricao,
+                   filmes.poster_url, generos.nome AS genero
+            FROM filmes
+            INNER JOIN generos ON filmes.genero_id = generos.id
+            WHERE filmes.id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+
+            return $consulta->fetch(PDO::FETCH_ASSOC) ?: null;
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao buscar filme por ID.");
+        }
+    }
+
+    public function cadastrar(Filme $filme, TipoUsuario $tipoUsuario): void
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado. Somente administradores podem inserir filmes.");
+        }
+
+        $sql = "INSERT INTO filmes (
+                titulo, diretor, data_lancamento, duracao, classificacao,
+                descricao, poster_url, usuario_id, genero_id
+            ) VALUES (
+                :titulo, :diretor, :data_lancamento, :duracao, :classificacao,
+                :descricao, :poster_url, :usuario_id, :genero_id
+            )";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", $filme->getTitulo(), PDO::PARAM_STR);
+            $consulta->bindValue(":diretor", $filme->getDiretor(), PDO::PARAM_STR);
+            $consulta->bindValue(":data_lancamento", $filme->getData_lancamento(), PDO::PARAM_STR);
+            $consulta->bindValue(":duracao", $filme->getDuracao(), PDO::PARAM_INT);
+            $consulta->bindValue(":classificacao", $filme->getClassificacao(), PDO::PARAM_STR);
+            $consulta->bindValue(":descricao", $filme->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":poster_url", $filme->getPoster_url(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $filme->getUsuario_id(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $filme->getGenero_id(), PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao inserir filme.");
+        }
+    }
+
+    public function atualizar(Filme $filme, TipoUsuario $tipoUsuario): void
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado. Somente administradores podem atualizar filmes.");
+        }
+
+        $sql = "UPDATE filmes SET
+                titulo = :titulo,
+                diretor = :diretor,
+                data_lancamento = :data_lancamento,
+                duracao = :duracao,
+                classificacao = :classificacao,
+                descricao = :descricao,
+                poster_url = :poster_url,
+                usuario_id = :usuario_id,
+                genero_id = :genero_id
+            WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", $filme->getTitulo(), PDO::PARAM_STR);
+            $consulta->bindValue(":diretor", $filme->getDiretor(), PDO::PARAM_STR);
+            $consulta->bindValue(":data_lancamento", $filme->getData_lancamento(), PDO::PARAM_STR);
+            $consulta->bindValue(":duracao", $filme->getDuracao(), PDO::PARAM_INT);
+            $consulta->bindValue(":classificacao", $filme->getClassificacao(), PDO::PARAM_STR);
+            $consulta->bindValue(":descricao", $filme->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":poster_url", $filme->getPoster_url(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $filme->getUsuario_id(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $filme->getGenero_id(), PDO::PARAM_INT);
+            $consulta->bindValue(":id", $filme->getId(), PDO::PARAM_INT);
+
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao atualizar filme.");
+        }
+    }
+
+    public function excluir(int $id, TipoUsuario $tipoUsuario): void
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado. Somente administradores podem excluir filmes.");
+        }
+
+        $sql = "DELETE FROM filmes WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao excluir filme.");
+        }
+    }
+
     public function buscar(string $termo): array
     {
         try {
-            $sql = " SELECT * FROM filmes
-            WHERE titulo LIKE :termo 
-               OR diretor LIKE :termo 
-               OR classificacao LIKE :termo
-               OR genero_id LIKE :termo 
-               OR data_lancamento LIKE :termo
-            ORDER BY titulo ASC ";
+            $sql = "SELECT filmes.*, generos.nome AS genero
+                FROM filmes
+                INNER JOIN generos ON filmes.genero_id = generos.id
+                WHERE filmes.titulo LIKE :termo 
+                   OR filmes.diretor LIKE :termo 
+                   OR filmes.classificacao LIKE :termo
+                   OR filmes.data_lancamento LIKE :termo
+                   OR generos.nome LIKE :termo
+                ORDER BY filmes.titulo ASC";
+
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(':termo', '%' . $termo . '%');
+            $consulta->bindValue(':termo', '%' . $termo . '%', PDO::PARAM_STR);
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
         } catch (Throwable $erro) {
@@ -40,10 +181,20 @@ final class FilmeServico
     public function adicionarAosFavoritos(int $usuario_id, int $filme_id): void
     {
         try {
+            $sql = "SELECT COUNT(*) FROM filmes_favoritos WHERE usuario_id = :usuarioId AND filme_id = :filmeId";
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(':usuarioId', $usuario_id, PDO::PARAM_INT);
+            $consulta->bindValue(':filmeId', $filme_id, PDO::PARAM_INT);
+            $consulta->execute();
+
+            if ($consulta->fetchColumn() > 0) {
+                return;
+            }
+
             $sql = "INSERT INTO filmes_favoritos (usuario_id, filme_id) VALUES (:usuarioId, :filmeId)";
             $consulta = $this->conexao->prepare($sql);
-            $consulta->bindValue(':usuarioId', $usuario_id);
-            $consulta->bindValue(':filmeId', $filme_id);
+            $consulta->bindValue(':usuarioId', $usuario_id, PDO::PARAM_INT);
+            $consulta->bindValue(':filmeId', $filme_id, PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);

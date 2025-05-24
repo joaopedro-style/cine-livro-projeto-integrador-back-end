@@ -57,7 +57,7 @@ final class Livro
         return $this->descricao;
     }
 
-    public function getImagem_cap_url(): string
+    public function getImagem_capa_url(): string
     {
         return $this->imagem_capa_url;
     }
