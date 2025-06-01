@@ -18,5 +18,8 @@
 - Banco de Dados: MySQL (ou MariaDB)
 - Gerenciamento de Dependências: Composer
 - Controle de Versão: Git
-- 
+
+## Como Executar o projeto
+
+
 
