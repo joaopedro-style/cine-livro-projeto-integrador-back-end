@@ -1,0 +1,1465 @@
+/* Variáveis */
+:root {
+    --primary-color: #343a40;
+    --secondary-color: #ffc107;
+    --text-color: #fff;
+    --card-bg: #2c3034;
+    --card-hover: #3a3f44;
+    --footer-bg: #343a40;
+}
+
+/* Estilos Gerais */
+body {
+    background-color: #1a1a1a;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+main {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+/* Header e Navegação */
+.bg-cinelivro {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo-img {
+    height: 100px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.navbar-cinelivro {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+    align-items: center;
+}
+
+.navbar-cinelivro .nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-cinelivro .nav-link:hover {
+    color: var(--secondary-color);
+}
+
+/* Estilos da barra de pesquisa */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search-input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.search-button:hover {
+    color: #007bff;
+}
+
+/* Container de resultados da busca */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-result-item {
+    display: flex;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.search-result-image {
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-info h6 {
+    margin: 0 0 4px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.search-result-type {
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    margin-right: 8px;
+}
+
+.search-result-genre {
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.search-result-desc {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.search-error,
+.search-no-results {
+    padding: 16px;
+    text-align: center;
+    color: #666;
+}
+
+.search-error {
+    color: #dc3545;
+}
+
+/* Cards e Carrossel */
+.card-cinelivro {
+    background-color: var(--card-bg);
+    border: 2px solid #fff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 550px;
+    max-height: 550px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-cinelivro:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-hover);
+}
+
+.card-img-top {
+    height: 400px;
+    width: 100%;
+    object-fit: contain;
+    padding: 0.6rem;
+    background-color: #fff;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to bottom, var(--card-bg), var(--card-hover));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.card-title {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: center;
+    padding: 0 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.card-text {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.card-subtitle {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.carousel {
+    position: relative;
+    padding: 0 40px;
+    transition: all 0.3s ease;
+}
+
+.carousel-inner {
+    padding: 1rem 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    position: absolute;
+}
+
+.carousel-control-prev {
+    left: 0;
+}
+
+.carousel-control-next {
+    right: 0;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Footer */
+.footer-cinelivro {
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+/* Botão de Login */
+.login-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.login-button:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.login-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos da página de login */
+.login-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h2 {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.login-card .form-label {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.login-card .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+
+.login-card .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    color: var(--text-color);
+}
+
+.login-card .input-group-text {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+
+.login-card .form-check-label {
+    color: var(--text-color);
+}
+
+.login-card .btn-primary {
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.login-card .btn-primary:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-card .text-primary {
+    color: var(--secondary-color) !important;
+}
+
+.login-card .text-muted {
+    color: #888 !important;
+}
+
+.login-card a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+
+    /* Ajustes para telas menores que 992px (desktops pequenos e tablets grandes) */
+    .bg-cinelivro {
+        padding: 1rem;
+        /* Reduzir padding do header */
+    }
+
+    .logo-img {
+        height: 80px;
+        /* Reduzir tamanho do logo */
+    }
+
+    .search-container {
+        margin-right: 10px;
+        /* Reduzir margin da busca */
+    }
+
+    .search-input {
+        width: 250px;
+        /* Ajustar largura da busca */
+    }
+
+    .navbar-cinelivro {
+        gap: 0.8rem;
+        /* Reduzir espaço entre itens da navegação */
+    }
+
+    .navbar-cinelivro .nav-link {
+        font-size: 1rem;
+        /* Ajustar tamanho da fonte da navegação */
+    }
+
+    .carousel {
+        padding: 0 20px;
+        /* Ajustar padding do carrossel */
+    }
+
+    .card-cinelivro {
+        min-height: 500px;
+        /* Ajustar altura mínima do card */
+        max-height: 500px;
+        /* Ajustar altura máxima do card */
+    }
+
+    .card-img-top {
+        height: 350px;
+        /* Ajustar altura da imagem do card */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Ajustes para telas menores que 768px (tablets e celulares grandes) */
+    .bg-cinelivro {
+        flex-direction: column;
+        /* Empilhar itens do header */
+        padding: 1rem;
+    }
+
+    .d-flex.align-items-center.gap-3 {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        /* Reduzir gap */
+    }
+
+    .search-container {
+        width: 100%;
+        /* Busca ocupa largura total */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .search-input {
+        width: 100%;
+        /* Input de busca ocupa largura total */
+    }
+
+    nav {
+        width: 100%;
+        /* Navegação ocupa largura total */
+    }
+
+    .navbar-cinelivro {
+        justify-content: space-around;
+        /* Distribuir itens da navegação */
+        gap: 0.5rem;
+    }
+
+    .logo-img {
+        height: 70px;
+        /* Reduzir ainda mais o tamanho do logo */
+    }
+
+    main {
+        padding: 0 0.8rem;
+        /* Reduzir padding horizontal principal */
+    }
+
+    .carousel {
+        padding: 0 10px;
+        /* Ajustar padding do carrossel */
+    }
+
+    .card-cinelivro {
+        min-height: 450px;
+        /* Ajustar altura mínima do card */
+        max-height: 450px;
+        /* Ajustar altura máxima do card */
+    }
+
+    .card-img-top {
+        height: 300px;
+        /* Ajustar altura da imagem do card */
+    }
+
+    .card-title {
+        font-size: 1rem;
+        /* Ajustar tamanho do título do card */
+    }
+
+    /* Ajustes para a página de usuário */
+    .user-profile {
+        padding: 15px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .profile-actions {
+        justify-content: center;
+    }
+
+    .profile-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* Ajustar colunas das estatísticas */
+        gap: 15px;
+    }
+
+    .section-card {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        /* Ajustar tamanho do título da seção */
+    }
+
+    /* Ajustes para o modal de detalhes */
+    .modal-dialog {
+        margin: 1rem;
+        /* Ajustar margem do modal */
+    }
+
+    .detalhes-image {
+        max-height: 300px;
+        /* Ajustar altura máxima da imagem de detalhes */
+    }
+
+    .detalhes-descricao {
+        font-size: 1rem;
+        /* Ajustar tamanho da fonte da descrição */
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* Ajustes para telas menores que 576px (celulares) */
+    .bg-cinelivro {
+        padding: 0.8rem;
+        /* Reduzir padding do header */
+    }
+
+    .logo-img {
+        height: 60px;
+        /* Reduzir tamanho do logo */
+    }
+
+    .search-container {
+        margin-bottom: 8px;
+    }
+
+    .navbar-cinelivro {
+        flex-wrap: wrap;
+        /* Quebrar linha na navegação */
+        justify-content: center;
+        /* Centralizar itens */
+    }
+
+    .navbar-cinelivro .nav-item {
+        margin: 0 5px;
+        /* Espaçamento menor entre itens */
+    }
+
+    .navbar-cinelivro .nav-link {
+        font-size: 0.9rem;
+        /* Reduzir tamanho da fonte da navegação */
+        padding: 0.3rem 0.5rem;
+        /* Reduzir padding dos links */
+    }
+
+    main {
+        padding: 0 0.5rem;
+        /* Reduzir padding horizontal principal */
+    }
+
+    .carousel {
+        padding: 0;
+        /* Remover padding do carrossel em telas muito pequenas */
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 25px;
+        /* Ajustar tamanho dos botões do carrossel */
+        height: 25px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 12px;
+        /* Ajustar tamanho dos ícones do carrossel */
+        height: 12px;
+    }
+
+    .card-cinelivro {
+        min-height: 380px;
+        /* Ajustar altura mínima do card */
+        max-height: 400px;
+        /* Ajustar altura máxima do card */
+    }
+
+    .card-img-top {
+        height: 250px;
+        /* Ajustar altura da imagem do card */
+    }
+
+    .card-body {
+        padding: 0.6rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .login-button {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
+    }
+
+    .navbar-toggler-icon {
+        width: 1em;
+        height: 1em;
+    }
+
+    /* Ajustes para a página de detalhes */
+    .detalhes-image {
+        max-height: 250px;
+        /* Ajustar altura máxima da imagem de detalhes */
+    }
+
+    .detalhes-descricao {
+        font-size: 0.9rem;
+        /* Ajustar tamanho da fonte da descrição */
+    }
+
+    .detalhes-metadata {
+        padding: 0.6rem;
+        /* Reduzir padding dos metadados */
+    }
+
+    .detalhes-metadata p {
+        font-size: 0.85rem;
+        /* Ajustar tamanho da fonte dos metadados */
+    }
+
+    /* Ajustes para a página de perfil */
+    .user-profile {
+        padding: 10px;
+    }
+
+    .profile-header {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .profile-name {
+        font-size: 1.8rem;
+        /* Ajustar tamanho do nome do perfil */
+    }
+
+    .stat-card {
+        padding: 10px;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .section-card {
+        padding: 10px;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+        /* Ajustar tamanho do título da seção */
+    }
+
+    .favorite-item {
+        flex-direction: column;
+        align-items: center;
+        /* Centralizar itens favoritos */
+        text-align: center;
+        padding: 10px;
+    }
+
+    .favorite-image {
+        width: 50px;
+        /* Ajustar tamanho da imagem favorita */
+        height: 75px;
+        margin-bottom: 5px;
+        /* Adicionar espaço abaixo da imagem */
+    }
+
+    .favorite-info {
+        flex: none;
+        /* Remover flex-grow para centralizar */
+    }
+
+    .favorite-info h5 {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+
+    .favorite-info .author {
+        font-size: 0.8rem;
+    }
+
+    .remove-favorite {
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+
+    .favorites-list.active {
+        grid-template-columns: 1fr;
+        /* Uma coluna para lista de favoritos */
+    }
+
+    .favorite-button {
+        padding: 6px 12px;
+        /* Reduzir padding do botão de favorito */
+        font-size: 0.7rem;
+        /* Reduzir tamanho da fonte do botão de favorito */
+    }
+}
+
+/* Estilos da Página de Usuário */
+.user-profile {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.profile-email {
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.profile-email i {
+    margin-right: 8px;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.edit-button {
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+    background: #0056b3;
+}
+
+.edit-button i {
+    margin-right: 8px;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #888;
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.section-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.section-title i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.info-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.info-item strong {
+    color: #888;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    color: #fff;
+    margin: 0;
+}
+
+.reviews-list {
+    display: grid;
+    gap: 20px;
+}
+
+.review-item {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.review-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.review-image {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.review-info h5 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.review-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Estilos da seção de favoritos */
+.favorites-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background: #2a2a2a;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background: #3a3a3a;
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.favorites-list {
+    display: none;
+    gap: 20px;
+}
+
+.favorites-list.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.favorite-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.favorite-image {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.favorite-info {
+    flex: 1;
+}
+
+.favorite-info h5 {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.favorite-info .author {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.remove-favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff4444;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.favorite-item:hover .remove-favorite {
+    opacity: 1;
+}
+
+.remove-favorite:hover {
+    background: rgba(255, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+/* Estilos para o botão de favoritos */
+.card-actions {
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.favorite-button i {
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.favorite-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo quando o item está nos favoritos */
+.favorite-button.added {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.favorite-button.added i {
+    color: #ff4d4d;
+    animation: heartBeat 0.3s ease-in-out;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Ajustes na transição do carrossel */
+.carousel {
+    transition: all 0.3s ease;
+}
+
+.recent-section {
+    transition: all 0.3s ease;
+}
+
+.welcome-section {
+    transition: all 0.3s ease;
+}
+
+/* Estilos para o modal de sinopse */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+}
+
+.modal-title {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.sinopse-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.sinopse-image:hover {
+    transform: scale(1.02);
+}
+
+.sinopse-text {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.ver-mais-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.ver-mais-btn:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--primary-color);
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Responsividade do modal */
+@media (max-width: 768px) {
+    .modal-body .row {
+        flex-direction: column;
+    }
+
+    .modal-body .col-md-4 {
+        margin-bottom: 1rem;
+    }
+
+    .sinopse-text {
+        font-size: 1rem;
+    }
+}
+
+/* Estilos para o formulário de edição de perfil */
+.edit-profile-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.edit-profile-form .form-label {
+    color: #333;
+    font-weight: 500;
+}
+
+.edit-profile-form .form-control {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.edit-profile-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.edit-profile-form .btn {
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.edit-profile-form .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.edit-profile-form .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.edit-profile-form .btn:hover {
+    opacity: 0.9;
+}
+
+#editForm {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#editForm .section-title {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.edit-button i {
+    margin-right: 5px;
+}
+
+/* Estilos para os cards clicáveis */
+.card-item {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para o modal de detalhes */
+.modal-content {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.modal-header {
+    border-bottom: 1px solid #333;
+    padding: 1rem;
+}
+
+.modal-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.detalhes-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.detalhes-image:hover {
+    transform: scale(1.02);
+}
+
+.detalhes-info {
+    padding: 1rem;
+}
+
+.detalhes-descricao {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.detalhes-metadata {
+    background-color: #2a2a2a;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.detalhes-metadata p {
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.detalhes-metadata strong {
+    color: #007bff;
+    margin-right: 0.5rem;
+}
+
+.detalhes-metadata span {
+    color: #ccc;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .detalhes-image {
+        max-height: 400px;
+    }
+
+    .detalhes-info {
+        padding: 0.5rem;
+    }
+
+    .detalhes-descricao {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 250px;
+    }
+
+    .detalhes-image {
+        max-height: 300px;
+    }
+
+    /* Estilos para o botão de favoritos */
+    .favorite-button {
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: 100%;
+    }
+
+    .favorite-button:hover {
+        background-color: rgba(255, 0, 0, 0.1);
+        color: #ff0000;
+    }
+
+    .favorite-button.favorito {
+        color: #ff0000;
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    .favorite-button.favorito:hover {
+        background-color: rgba(255, 0, 0, 0.2);
+    }
+
+    .favorite-button i {
+        font-size: 1.1rem;
+    }
+
+    /* Animação para o ícone de coração */
+    @keyframes heartBeat {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .favorite-button.favorito i {
+        animation: heartBeat 0.3s ease-in-out;
+    }
+}

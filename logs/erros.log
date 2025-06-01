@@ -1,0 +1,73 @@
+
+
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:41]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\FilmeServico.php
+Linha: 226
+Mensagem: CineLivro\Services\FilmeServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
+[2025-05-28 08:37:57]
+Arquivo: C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\src\Services\LivroServico.php
+Linha: 223
+Mensagem: CineLivro\Services\LivroServico::verificarFavorito(): Argument #1 ($usuario_id) must be of type int, null given, called in C:\xampp\htdocs\cine-livro-projeto-integrador-back-end\verificar_favorito.php on line 36
+
