@@ -169,7 +169,9 @@ try {
     </main>
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
+            <a href="index.php">
             <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
             <nav>
                 <ul class="nav navbar-cinelivro">
                     <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>

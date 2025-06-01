@@ -34,10 +34,10 @@ require_once "../includes/cabecalho-admin.php";
 
 ?>
 
-<div class="row">
-    <article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+    <article class="col-12 bg-black rounded shadow py-4">
 
-        <h2 class="text-center">
+        <h2 class="text-center text-white">
             Cadastrar novo Genero
         </h2>
 
@@ -49,7 +49,7 @@ require_once "../includes/cabecalho-admin.php";
 
         <form class="mx-auto w-75" action="" method="post" id="form-cadastrar" name="form-cadastrar">
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="nome">Nome:</label>
                 <input class="form-control" type="text" id="nome" name="nome" required>
             </div>

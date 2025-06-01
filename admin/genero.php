@@ -13,17 +13,17 @@ $listaDeGeneros = $generoServico->listarTodos();
 require_once "../includes/cabecalho-admin.php";
 
 ?>
-<div class="row">
-    <article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+    <article class="col-12 bg-black rounded shadow py-4">
 
-        <h2 class="text-center">
-            Generos <span class="badge bg-dark"> <?= count($listaDeGeneros) ?> </span>
+        <h2 class="text-center text-white">
+            Generos <span class="badge bg-gradient"> <?= count($listaDeGeneros) ?> </span>
         </h2>
 
-        <p class="text-center mt-5">
+        <p class="text-center mt-5 text-white">
             <a class="btn btn-primary" href="genero-cadastra.php">
                 <i class="bi bi-plus-circle"></i>
-                Cadastrar novo Genero
+                Cadastrar novo Gênero
             </a>
         </p>
 
@@ -43,7 +43,7 @@ require_once "../includes/cabecalho-admin.php";
                                 <a class="btn btn-warning" href="genero-atualiza.php?id=<?= $dadosGenero['id'] ?>">
                                     <i class="bi bi-pencil"></i> Atualizar
                                 </a>
-                                <a class="btn btn-danger excluir" href="genero-exclui.php?id=<?= $dadosGenero['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este Genero?');">
+                                <a class="btn btn-danger excluir" href="genero-exclui.php?id=<?= $dadosGenero['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este Gênero?');">
                                     <i class="bi bi-trash"></i> Excluir
                                 </a>
                             </td>
@@ -51,9 +51,10 @@ require_once "../includes/cabecalho-admin.php";
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
     </article>
+</div>
 
-    <?php
-    require_once "../includes/rodape-admin.php";
-    ?>
+
+<?php
+require_once "../includes/rodape-admin.php";
+?>

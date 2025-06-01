@@ -33,7 +33,7 @@ if (isset($_POST["atualizar"])) {
         $senhaBruta = $_POST["senha"];
         $senha = empty($senhaBruta) ? $dados["senha"] : Utils::verificarSenha($senhaBruta, $dados["senha"]);
 
-        $data_nascimento = Utils::formataData($_POST["data_nascimento"]);
+        $data_nascimento = $_POST["data_nascimento"];
         Validacoes::validarDataNascimento($data_nascimento);
 
         $tipoStr = $_POST["tipo"];
@@ -53,10 +53,10 @@ if (isset($_POST["atualizar"])) {
 require_once "../includes/cabecalho-admin.php";
 
 ?>
-<div class="row">
-    <article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+    <article class="col-12 bg-black rounded shadow py-4">
 
-        <h2 class="text-center">
+        <h2 class="text-center text-white">
             Atualizar dados do usuário
         </h2>
 
@@ -67,31 +67,31 @@ require_once "../includes/cabecalho-admin.php";
         <?php endif; ?>
 
         <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
-            <input type="hidden" name="id" value="<?= $dados["id"] ?>">
+            <input type="hidden" name="id" value="<?= $dados["id"] ?>" required>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="nome">Nome:</label>
-                <input class="form-control" type="text" id="nome" name="nome" value="<?= $dados['nome'] ?>">
+                <input class="form-control" type="text" id="nome" name="nome" value="<?= $dados['nome'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="email">E-mail:</label>
-                <input class="form-control" type="email" id="email" name="email" value="<?= $dados['email'] ?>">
+                <input class="form-control" type="email" id="email" name="email" value="<?= $dados['email'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="senha">Senha:</label>
                 <input class="form-control" type="password" id="senha" name="senha" placeholder="Preencha apenas se for alterar">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="data_nascimento">Data de Nascimento:</label>
-                <input class="form-control" type="date" id="data_nascimento" name="data_nascimento" value="<?= $dados['data_nascimento'] ?>">
+                <input class="form-control" type="date" id="data_nascimento" name="data_nascimento" value="<?= $dados['data_nascimento'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="tipo">Tipo:</label>
-                <select class="form-select" name="tipo" id="tipo">
+                <select class="form-select" name="tipo" id="tipo" required>
                     <option value=""></option>
 
                     <option <?php if ($dados['tipo'] === 'padrão') echo " selected "; ?> value="padrão">Padrão</option>
@@ -101,7 +101,9 @@ require_once "../includes/cabecalho-admin.php";
                 </select>
             </div>
 
-            <button class="btn btn-primary" name="atualizar"><i class="bi bi-arrow-clockwise"></i> Atualizar</button>
+            <button class="btn btn-success" name="atualizar"><i class="bi bi-arrow-clockwise"></i> Atualizar</button>
+
+            <a href="usuarios.php" class="btn btn-secondary">Cancelar</a>
         </form>
 
     </article>

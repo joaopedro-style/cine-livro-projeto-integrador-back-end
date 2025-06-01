@@ -13,14 +13,14 @@ $listaDePlataformas = $plataformaServico->listarTodos();
 require_once "../includes/cabecalho-admin.php";
 
 ?>
-<div class="row">
-    <article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+    <article class="col-12 bg-black rounded shadow py-4">
 
-        <h2 class="text-center">
-            Plataformas <span class="badge bg-dark"> <?= count($listaDePlataformas) ?> </span>
+        <h2 class="text-center text-white">
+            Plataformas <span class="badge bg-gradient"> <?= count($listaDePlataformas) ?> </span>
         </h2>
 
-        <p class="text-center mt-5">
+        <p class="text-center mt-5 text-white">
             <a class="btn btn-primary" href="plataforma-cadastra.php">
                 <i class="bi bi-plus-circle"></i>
                 Cadastrar nova Plataforma
@@ -40,7 +40,7 @@ require_once "../includes/cabecalho-admin.php";
                         <tr>
                             <td> <?= $dadosPlataforma['nome'] ?></td>
                             <td class="text-center">
-                                <a class="btn btn-warning" href="plataforma-atualiza.php?id=<?= $dadosGenero['id'] ?>">
+                                <a class="btn btn-warning" href="plataforma-atualiza.php?id=<?= $dadosPlataforma['id'] ?>">
                                     <i class="bi bi-pencil"></i> Atualizar
                                 </a>
                                 <a class="btn btn-danger excluir" href="plataforma-exclui.php?id=<?= $dadosPlataforma['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir esta Plataforma?');">
@@ -51,9 +51,10 @@ require_once "../includes/cabecalho-admin.php";
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
     </article>
+</div>
 
-    <?php
-    require_once "../includes/rodape-admin.php";
-    ?>
+
+<?php
+require_once "../includes/rodape-admin.php";
+?>

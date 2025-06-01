@@ -1,21 +1,20 @@
 <?php
 
 use CineLivro\Auth\ControleDeAcesso;
-use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
-use CineLivro\Services\LivroServico;
+use CineLivro\Services\PlataformaServico;
 
 require_once "../vendor/autoload.php";
 
 ControleDeAcesso::exigirLogin();
 ControleDeAcesso::exigirAdmin();
 
-$livroServico = new LivroServico();
+$plataformaServico = new PlataformaServico();
 
 $id = Utils::sanitizar($_GET['id'], 'inteiro');
 Utils::verificarId($id);
 
-$livroServico->excluir($id, TipoUsuario::ADMIN);
+$plataformaServico->excluir($id);
 
-header("location:livro.php");
+header("location:plataforma.php");
 exit;

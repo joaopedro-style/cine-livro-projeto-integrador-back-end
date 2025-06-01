@@ -1,14 +1,14 @@
 <?php
+session_start();
 require_once "../vendor/autoload.php";
 require_once "../includes/cabecalho-admin.php";
-session_start();
 ?>
 
 <article class="p-5 my-4 rounded-3 bg-white shadow">
     <div class="container-fluid py-1">
-        <h2 class="display-4 bg-warning rounded text-center">Acesso Negado!</h2>
+        <h2 class="display-4 bg-danger rounded text-center">Acesso Negado!</h2>
         <hr class="my-4">
-        <p class="fs-5 text-center"><b> <?= $_SESSION["nome"] ?></b> você <span class="badge bg-danger">não tem permissão </span> para acessar este recurso.</p>
+        <p class="fs-5 text-center"><b> <?= $_SESSION["nome"] ?></b> você <span class="badge bg-warning">não tem permissão </span> para acessar este recurso.</p>
         <hr class="my-4">
 
         <p>

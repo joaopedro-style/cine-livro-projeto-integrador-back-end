@@ -12,20 +12,19 @@ $listaDeUsuarios = $usuarioServico->listarTodos();
 
 require_once "../includes/cabecalho-admin.php";
 ?>
-<div class="row">
-	<article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+	<article class="col-12 bg-black rounded shadow py-4">
 
-		<h2 class="text-center">
-			Usuários <span class="badge bg-dark"> <?= count($listaDeUsuarios) ?> </span></h2>
+		<h2 class="text-center text-white">
+			Usuários <span class="badge bg-gradient"> <?= count($listaDeUsuarios) ?> </span></h2>
 
 		<p class="text-center mt-5">
 			<a class="btn btn-primary" href="usuario-cadastra.php">
 				<i class="bi bi-plus-circle"></i>
-				cadastrar novo usuário</a>
+				Cadastrar novo usuário</a>
 		</p>
 
 		<div class="table-responsive">
-
 			<table class="table table-hover">
 				<thead class="table-light">
 					<tr>
@@ -50,7 +49,7 @@ require_once "../includes/cabecalho-admin.php";
 									<i class="bi bi-pencil"></i> Atualizar
 								</a>
 
-								<a class="btn btn-danger excluir" href="usuario-exclui.php?id=<?= $dadosUsuario['id'] ?>">
+								<a class="btn btn-danger excluir" href="usuario-exclui.php?id=<?= $dadosUsuario['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este Usuário?');">
 									<i class="bi bi-trash"></i> Excluir
 								</a>
 							</td>
@@ -60,10 +59,9 @@ require_once "../includes/cabecalho-admin.php";
 				</tbody>
 			</table>
 		</div>
-
 	</article>
 </div>
 
-<?php 
+<?php
 require_once "../includes/rodape-admin.php";
 ?>

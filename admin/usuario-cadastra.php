@@ -49,7 +49,7 @@ require_once "../includes/cabecalho-admin.php";
 
 <div class="container my-5">
 	<div class="row">
-		<article class="col-12 bg-dark rounded shadow py-4">
+		<article class="col-12 bg-black rounded shadow py-4">
 
 			<h2 class="text-center text-white">Cadastrar novo usuário</h2>
 
@@ -62,36 +62,37 @@ require_once "../includes/cabecalho-admin.php";
 			<form class="mx-auto w-75" method="post" id="form-cadastrar">
 				<div class="mb-3">
 					<label class="form-label text-white" for="nome">Nome:</label>
-					<input class="form-control" type="text" id="nome" name="nome">
+					<input class="form-control" type="text" id="nome" name="nome" required>
 				</div>
 
 				<div class="mb-3">
 					<label class="form-label text-white" for="email">E-mail:</label>
-					<input class="form-control" type="email" id="email" name="email">
+					<input class="form-control" type="email" id="email" name="email" required>
 				</div>
 
 				<div class="mb-3">
 					<label class="form-label text-white" for="senha">Senha:</label>
-					<input class="form-control" type="password" id="senha" name="senha">
+					<input class="form-control" type="password" id="senha" name="senha" required>
 				</div>
 
 				<div class="mb-3">
 					<label class="form-label text-white" for="data_nascimento">Data de Nascimento:</label>
-					<input class="form-control" type="date" id="data_nascimento" name="data_nascimento">
+					<input class="form-control" type="date" id="data_nascimento" name="data_nascimento" required>
 				</div>
 
 				<div class="mb-3">
 					<label class="form-label text-white" for="tipo">Tipo:</label>
-					<select class="form-select" name="tipo" id="tipo">
+					<select class="form-select" name="tipo" id="tipo" required>
 						<option value=""></option>
 						<option value="padrão" selected>padrão</option>
 						<option value="admin">Administrador</option>
 					</select>
 				</div>
 
-				<button class="btn btn-primary" name="cadastrar">
+				<button class="btn btn-success" name="cadastrar">
 					<i class="bi bi-save"></i> Cadastrar
 				</button>
+				<a href="usuarios.php" class="btn btn-secondary">Cancelar</a>
 			</form>
 
 		</article>

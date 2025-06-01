@@ -64,10 +64,10 @@ require_once "../includes/cabecalho-admin.php";
 
 ?>
 
-<div class="row">
-    <article class="col-12 bg-white rounded shadow my-1 py-4">
+<div class="container my-5">
+    <article class="col-12 bg-black rounded shadow py-4">
 
-        <h2 class="text-center">
+        <h2 class="text-center text-white">
             Atualizar dados do filme
         </h2>
 
@@ -80,32 +80,32 @@ require_once "../includes/cabecalho-admin.php";
         <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
             <input type="hidden" name="id" value="<?= $dadosFilme["id"] ?>">
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="titulo">Título:</label>
                 <input class="form-control" type="text" id="titulo" name="titulo" value="<?= $dadosFilme['titulo'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="diretor">Diretor:</label>
                 <input class="form-control" type="text" id="diretor" name="diretor" value="<?= $dadosFilme['diretor'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="data_lancamento">Data de Lançamento:</label>
                 <input class="form-control" type="date" id="data_lancamento" name="data_lancamento" value="<?= $dadosFilme['data_lancamento'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="duracao">Duração (em minutos):</label>
                 <input class="form-control" type="number" id="duracao" name="duracao" value="<?= $dadosFilme['duracao'] ?>" required>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="classificacao">Classificação:</label>
                 <input class="form-control" type="text" id="classificacao" name="classificacao" value="<?= $dadosFilme['classificacao'] ?>">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="genero_id">Gênero:</label>
                 <select class="form-select" name="genero_id" id="genero_id" required>
                     <option value="">Selecione...</option>
@@ -117,19 +117,20 @@ require_once "../includes/cabecalho-admin.php";
                 </select>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="descricao">Descrição:</label>
                 <textarea class="form-control" id="descricao" name="descricao" rows="3"><?= $dadosFilme['descricao'] ?></textarea>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 text-white">
                 <label class="form-label" for="poster_url">Poster URL:</label>
                 <input class="form-control" type="url" id="poster_url" name="poster_url" value="<?= $dadosFilme['poster_url'] ?>">
             </div>
 
-            <button class="btn btn-primary" name="atualizar">
+            <button class="btn btn-success" name="atualizar">
                 <i class="bi bi-arrow-clockwise"></i> Atualizar
             </button>
+            <a href="filme.php" class="btn btn-secondary">Cancelar</a>
         </form>
 
     </article>
