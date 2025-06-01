@@ -4,11 +4,10 @@ require_once "vendor/autoload.php";
 use CineLivro\Auth\ControleDeAcesso;
 use CineLivro\Services\LivroServico;
 use CineLivro\Enums\TipoUsuario;
-use CineLivro\Helpers\Utils;
 
 ControleDeAcesso::iniciarsessao();
 
-if(isset($_GET['sair'])) {
+if (isset($_GET['sair'])) {
     ControleDeAcesso::logout();
 }
 
@@ -16,15 +15,13 @@ $livro = null;
 $livros = [];
 $erroAoCarregar = null;
 
-// Verificar se um ID de livro foi passado na URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $livroId = (int)$_GET['id'];
     try {
         $livroServico = new LivroServico();
-        // Obter o tipo de usuário da sessão e criar o enum
-        $tipoUsuario = isset($_SESSION['tipo']) ? TipoUsuario::from($_SESSION['tipo']) : TipoUsuario::PADRÃO; // Assumindo PADRÃO para não logados ou tipo indefinido
+        $tipoUsuario = isset($_SESSION['tipo']) ? TipoUsuario::from($_SESSION['tipo']) : TipoUsuario::PADRÃO;
         $livro = $livroServico->buscarPorId($livroId, $tipoUsuario);
-        
+
         if (!$livro) {
             $erroAoCarregar = "Livro não encontrado.";
         }
@@ -33,10 +30,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         error_log("Erro ao buscar livro por ID " . $livroId . ": " . $erro->getMessage());
     }
 } else {
-    // Buscar livros do banco de dados (para a lista na página principal de livros)
+
     try {
         $livroServico = new LivroServico();
-        $livros = $livroServico->buscar(''); // Mantido como buscar('') para listar todos
+        $livros = $livroServico->buscar('');
         if (empty($livros)) {
             error_log("Nenhum livro encontrado no banco de dados para a lista.");
         }
@@ -82,7 +79,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
-                        <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                        <?php if (isset($_SESSION['id'])) : ?>
+                            <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <?php
@@ -102,13 +101,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </header>
 
     <main class="container mb-5">
-        <?php if ($erroAoCarregar):
+        <?php if ($erroAoCarregar) :
         ?>
             <div class="alert alert-danger">
                 <?= $erroAoCarregar ?>
             </div>
-        <?php elseif ($livro):
-        /* Exibir detalhes de um único livro */
+        <?php elseif ($livro) :
+
         ?>
             <section class="book-details-section">
                 <h2 class="mb-4 text-white text-center"><?= htmlspecialchars($livro['titulo']) ?></h2>
@@ -126,14 +125,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                 <p><strong>Gênero:</strong> <?= htmlspecialchars($livro['genero'] ?? 'Não informado') ?></p>
                                 <p><strong>Plataformas:</strong> <?= htmlspecialchars($livro['plataformas'] ?? 'Não informadas') ?></p>
                             </div>
-                            <?php if (isset($_SESSION['id'])):
-                            // Mostrar botão de favorito apenas para usuários logados
+                            <?php if (isset($_SESSION['id'])) :
+
                             ?>
                                 <?php
-                                // Verificar se o livro é favorito para o usuário logado
+
                                 $isFavorito = false;
                                 try {
-                                    // Passar o TipoUsuario obtido da sessão
+
                                     $isFavorito = $livroServico->verificarFavorito($_SESSION['id'], $livro['id']);
                                 } catch (Throwable $e) {
                                     error_log("Erro ao verificar favorito: " . $e->getMessage());
@@ -149,46 +148,45 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     </div>
                 </div>
             </section>
-        <?php else:
-        /* Exibir a lista de livros se nenhum ID for passado */
+        <?php else :
+
         ?>
             <section class="welcome-section">
                 <h2 class="mb-2 text-white">Livros</h2>
                 <p>Confira os livros mais populares e as últimas novidades do mundo literário.</p>
             </section>
             <section class="recent-section">
-                <?php if (empty($livros)):
+                <?php if (empty($livros)) :
                 ?>
                     <div class="alert alert-info">
                         Nenhum livro encontrado. Por favor, cadastre alguns livros primeiro.
                     </div>
-                <?php else:
+                <?php else :
                 ?>
                     <div id="carouselLivros" class="carousel slide">
                         <div class="carousel-inner">
                             <?php
-                            // Dividir livros em grupos de 4 para o carrossel
+
                             $gruposLivros = array_chunk($livros, 4);
-                            foreach ($gruposLivros as $index => $grupo):
+                            foreach ($gruposLivros as $index => $grupo) :
                             ?>
                                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                                     <div class="row g-1 justify-content-start">
-                                        <?php foreach ($grupo as $livro):
+                                        <?php foreach ($grupo as $livro) :
                                         ?>
                                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                                <!-- Atualizado onclick para redirecionar para a página de detalhes -->
+
                                                 <div class="card card-cinelivro h-100 shadow-sm card-item" data-id="<?= $livro['id'] ?>" data-tipo="livro" onclick="window.location.href = 'livros.php?id=<?= $livro['id'] ?>';">
                                                     <img src="<?= htmlspecialchars($livro['imagem_capa_url']) ?>" class="card-img-top" alt="<?= htmlspecialchars($livro['titulo']) ?>">
                                                     <div class="card-body text-center">
                                                         <h4 class="card-title mb-1"><?= htmlspecialchars($livro['titulo']) ?></h4>
                                                         <div class="card-actions">
-                                                            <?php if (isset($_SESSION['id'])):
-                                                            // Mostrar botão de favorito apenas para usuários logados
+                                                            <?php if (isset($_SESSION['id'])) :
+
                                                             ?>
                                                                 <?php
                                                                 $isFavorito = false;
                                                                 try {
-                                                                    // Passar o TipoUsuario obtido da sessão
                                                                     $isFavorito = $livroServico->verificarFavorito($_SESSION['id'], $livro['id']);
                                                                 } catch (Throwable $e) {
                                                                     error_log("Erro ao verificar favorito na lista: " . $e->getMessage());
@@ -222,13 +220,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </main>
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
-            <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            <a href="index.php">
+                <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
             <nav>
                 <ul class="nav navbar-cinelivro">
                     <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
-                    <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php if (isset($_SESSION['id'])) : ?>
+                        <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php endif; ?>
+                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light">Admin</a></li>
                 </ul>
             </nav>
             <p class="mb-0">&copy; 2025 CineLivro. Todos os direitos reservados.</p>

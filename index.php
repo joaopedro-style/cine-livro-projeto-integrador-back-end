@@ -3,8 +3,6 @@ require_once "vendor/autoload.php";
 use CineLivro\Auth\ControleDeAcesso;
 use CineLivro\Services\FilmeServico;
 use CineLivro\Services\LivroServico;
-use CineLivro\Enums\TipoUsuario;
-use CineLivro\Helpers\Utils;
 
 ControleDeAcesso::iniciarsessao();
 
@@ -12,7 +10,6 @@ if(isset($_GET['sair'])) {
     ControleDeAcesso::logout();
 }
 
-// Buscar filmes e livros para os carrosséis
 $filmeServico = new FilmeServico();
 $livroServico = new LivroServico();
 $filmesDestaque = [];
@@ -20,11 +17,9 @@ $livrosDestaque = [];
 $erroAoCarregarDestaques = null;
 
 try {
-    // Usar buscar('') para listar todos (ou modificar o método buscar se necessário)
     $todosFilmes = $filmeServico->buscar('');
     $todosLivros = $livroServico->buscar('');
 
-    // Filtrar "wicked" dos destaques
     $filmesDestaque = array_filter($todosFilmes, function($filme) {
         return strtolower($filme['titulo']) !== 'wicked';
     });
@@ -100,7 +95,6 @@ try {
             <div id="carouselFilmes" class="carousel slide">
                 <div class="carousel-inner">
                     <?php
-                    // Dividir filmes em grupos de 4 para o carrossel
                     $gruposFilmes = array_chunk($filmesDestaque, 4);
                     foreach ($gruposFilmes as $index => $grupoFilmes):
                     ?>
@@ -135,7 +129,6 @@ try {
             <div id="carouselLivros" class="carousel slide">
                 <div class="carousel-inner">
                     <?php
-                    // Dividir livros em grupos de 4 para o carrossel
                     $gruposLivros = array_chunk($livrosDestaque, 4);
                     foreach ($gruposLivros as $index => $grupoLivros):
                     ?>

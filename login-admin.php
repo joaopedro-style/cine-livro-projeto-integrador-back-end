@@ -5,7 +5,7 @@ use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
 use CineLivro\Services\UsuarioServico;
 
-require_once 'vendor/autoload.php';
+require_once "vendor/autoload.php";
 
 $feedback = null;
 
@@ -26,7 +26,7 @@ if (isset($_POST['entrar'])) {
     $senha = $_POST['senha'];
 
     if (empty($email) || empty($senha)) {
-        header("Location: login.php?campos_obrigatorios");
+        header("Location: login-admin.php?campos_obrigatorios");
         exit;
     }
 
@@ -35,30 +35,30 @@ if (isset($_POST['entrar'])) {
         $usuario = $usuarioServico->buscaPorEmail($email);
 
         if (!is_array($usuario) || !isset($usuario['senha'])) {
-            header("Location: login.php?dados_incorretos");
+            header("Location: login-admin.php?dados_incorretos");
             exit;
         }
 
         if (password_verify($senha, $usuario['senha'])) {
-            if (($usuario['tipo'] ?? 'usuario') !== TipoUsuario::PADRÃO->value) {
-                header("Location: login.php?acesso_negado");
+            if (($usuario['tipo'] ?? 'usuario') !== TipoUsuario::ADMIN->value) {
+                header("Location: login-admin.php?acesso_negado");
                 exit;
             }
 
             ControleDeAcesso::login(
                 $usuario['id'],
                 $usuario['nome'],
-                $usuario['tipo'] ?? 'usuario'
+                $usuario['tipo']
             );
-            header("Location: index.php");
+            header("Location:admin/index.php");
             exit;
         } else {
-            header("Location: login.php?dados_incorretos");
+            header("Location: login-admin.php?dados_incorretos");
             exit;
         }
-    } catch (Throwable $e) {
-        Utils::registrarLog($e);
-        header("Location: login.php?erro");
+    } catch (Throwable $erro) {
+        Utils::registrarLog($erro);
+        header("Location: login-admin.php?erro");
         exit;
     }
 }
@@ -99,41 +99,30 @@ if (isset($_POST['entrar'])) {
             </div>
         </div>
     </header>
+    <div class="container my-5">
+        <div class="col-12 bg-black rounded shadow py-4">
+            <h2 class="text-center fw-light text-white">Acesso à área administrativa</h2>
 
-    <main class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="login-card">
-                    <h2 class="text-center mb-4">Login</h2>
-                    <form action="" method="POST">
-                        <?php if (isset($feedback)) : ?>
-                            <div class="alert alert-warning text-center">
-                                <?= $feedback ?>
-                            </div>
-                        <?php endif; ?>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="senha" class="form-label">Senha</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                <input type="password" class="form-control" id="senha" name="senha" required>
-                            </div>
-                        </div>
-                        <button type="submit" name="entrar" class="btn btn-primary w-100 mb-3">Entrar</button>
-                        <div class="text-center">
-                            <p class="mb-2">Não tem uma conta? <a href="cadastro.php" class="text-primary">Cadastre-se</a></p>
-                        </div>
-                    </form>
+            <form action="" method="post" id="form-login" name="form-login" class="mx-auto w-50" autocomplete="off">
+                <?php if (isset($feedback)) : ?>
+                    <p class="my-2 alert alert-warning text-center">
+                        <?= $feedback ?>
+                    </p>
+                <?php endif; ?>
+
+                <div class="mb-3 text-white">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input autofocus class="form-control" type="email" id="email" name="email">
                 </div>
-            </div>
+                <div class="mb-3 text-white">
+                    <label for="senha" class="form-label">Senha:</label>
+                    <input class="form-control" type="password" id="senha" name="senha">
+                </div>
+
+                <button class="btn btn-primary btn-lg" name="entrar" type="submit">Entrar</button>
+            </form>
         </div>
-    </main>
+    </div>
 
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
@@ -148,7 +137,7 @@ if (isset($_POST['entrar'])) {
                     <?php if (isset($_SESSION['id'])) : ?>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
                     <?php endif; ?>
-                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light">Admin</a></li>
+                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light"></i>Admin</a></li>
                 </ul>
             </nav>
             <p class="mb-0">&copy; 2025 CineLivro. Todos os direitos reservados.</p>

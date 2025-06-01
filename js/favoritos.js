@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar botões de favorito nas páginas de filmes e livros
     const favoriteButtons = document.querySelectorAll('.favorite-button');
     favoriteButtons.forEach(button => {
         const card = button.closest('.card-item');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Inicializar botões de remover favoritos no perfil
     const removeButtons = document.querySelectorAll('.remove-favorite');
     removeButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Função para verificar se um item é favorito
 async function verificarFavorito(id, tipo, button) {
     try {
         const response = await fetch('verificar_favorito.php', {
@@ -45,7 +42,6 @@ async function verificarFavorito(id, tipo, button) {
     }
 }
 
-// Função para adicionar/remover favorito
 async function toggleFavorito(id, tipo, button) {
     if (!button || typeof button.classList === 'undefined') {
         console.error('Elemento do botão inválido passado para toggleFavorito:', button);
@@ -94,7 +90,6 @@ async function toggleFavorito(id, tipo, button) {
     }
 }
 
-// Função para remover favorito do perfil
 async function removerFavorito(id, tipo, button) {
     if (!confirm('Tem certeza que deseja remover este item dos favoritos?')) {
         return;
@@ -111,7 +106,6 @@ async function removerFavorito(id, tipo, button) {
 
         const data = await response.json();
         if (data.sucesso) {
-            // Remove o elemento da lista
             const favoriteItem = button.closest('.favorite-item');
             favoriteItem.remove();
             alert(data.mensagem);

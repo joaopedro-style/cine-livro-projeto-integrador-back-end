@@ -7,7 +7,7 @@ use CineLivro\Enums\TipoUsuario;
 
 ControleDeAcesso::iniciarsessao();
 
-if(isset($_GET['sair'])) {
+if (isset($_GET['sair'])) {
     ControleDeAcesso::logout();
 }
 
@@ -15,15 +15,13 @@ $filme = null;
 $filmes = [];
 $erroAoCarregar = null;
 
-// Verificar se um ID de filme foi passado na URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $filmeId = (int)$_GET['id'];
     try {
         $filmeServico = new FilmeServico();
-        // Obter o tipo de usuário da sessão e criar o enum
-        $tipoUsuario = isset($_SESSION['tipo']) ? TipoUsuario::from($_SESSION['tipo']) : TipoUsuario::PADRÃO; // Assumindo PADRÃO para não logados ou tipo indefinido
+        $tipoUsuario = isset($_SESSION['tipo']) ? TipoUsuario::from($_SESSION['tipo']) : TipoUsuario::PADRÃO;
         $filme = $filmeServico->buscarPorId($filmeId, $tipoUsuario);
-        
+
         if (!$filme) {
             $erroAoCarregar = "Filme não encontrado.";
         }
@@ -32,13 +30,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         error_log("Erro ao buscar filme por ID " . $filmeId . ": " . $erro->getMessage());
     }
 } else {
-    // Buscar filmes do banco de dados (para a lista na página principal de filmes)
     try {
         $filmeServico = new FilmeServico();
-        $todosFilmes = $filmeServico->buscar(''); // Mantido como buscar('') para listar todos
+        $todosFilmes = $filmeServico->buscar('');
 
-        // Filtrar "wicked" da lista de filmes
-        $filmes = array_filter($todosFilmes, function($filme) {
+        $filmes = array_filter($todosFilmes, function ($filme) {
             return strtolower($filme['titulo']) !== 'wicked';
         });
 
@@ -86,7 +82,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                         <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                         <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
-                        <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                        <?php if (isset($_SESSION['id'])) : ?>
+                            <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
                 <?php
@@ -106,13 +104,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </header>
 
     <main class="container mb-5">
-        <?php if ($erroAoCarregar):
+        <?php if ($erroAoCarregar) :
         ?>
             <div class="alert alert-danger">
                 <?= $erroAoCarregar ?>
             </div>
-        <?php elseif ($filme):
-        /* Exibir detalhes de um único filme */
+        <?php elseif ($filme) :
+
         ?>
             <section class="movie-details-section">
                 <h2 class="mb-4 text-white text-center"><?= htmlspecialchars($filme['titulo']) ?></h2>
@@ -130,14 +128,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                 <p><strong>Gênero:</strong> <?= htmlspecialchars($filme['genero'] ?? 'Não informado') ?></p>
                                 <p><strong>Plataformas:</strong> <?= htmlspecialchars($filme['plataformas'] ?? 'Não informadas') ?></p>
                             </div>
-                            <?php if (isset($_SESSION['id'])):
-                            // Mostrar botão de favorito apenas para usuários logados
+                            <?php if (isset($_SESSION['id'])) :
                             ?>
                                 <?php
-                                // Verificar se o filme é favorito para o usuário logado
                                 $isFavorito = false;
                                 try {
-                                    // Passar o TipoUsuario obtido da sessão
                                     $isFavorito = $filmeServico->verificarFavorito($_SESSION['id'], $filme['id']);
                                 } catch (Throwable $e) {
                                     error_log("Erro ao verificar favorito: " . $e->getMessage());
@@ -153,41 +148,39 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     </div>
                 </div>
             </section>
-        <?php else:
-        /* Exibir a lista de filmes se nenhum ID for passado */
+        <?php else :
+
         ?>
             <section class="welcome-section">
                 <h2 class="mb-2 text-white">Filmes</h2>
                 <p>Confira os filmes mais populares e as últimas novidades do mundo cinematográfico.</p>
             </section>
             <section class="recent-section">
-                <?php if (empty($filmes)):
+                <?php if (empty($filmes)) :
                 ?>
                     <div class="alert alert-info">
                         Nenhum filme encontrado. Por favor, cadastre alguns filmes primeiro.
                     </div>
-                <?php else:
+                <?php else :
                 ?>
                     <div id="carouselFilmes" class="carousel slide">
                         <div class="carousel-inner">
                             <?php
-                            // Dividir filmes em grupos de 4 para o carrossel
                             $gruposFilmes = array_chunk($filmes, 4);
-                            foreach ($gruposFilmes as $index => $grupo):
+                            foreach ($gruposFilmes as $index => $grupo) :
                             ?>
                                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                                     <div class="row g-1 justify-content-start">
-                                        <?php foreach ($grupo as $filme):
+                                        <?php foreach ($grupo as $filme) :
                                         ?>
                                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                                <!-- Atualizado onclick para redirecionar para a página de detalhes -->
                                                 <div class="card card-cinelivro h-100 shadow-sm card-item" data-id="<?= $filme['id'] ?>" data-tipo="filme" onclick="window.location.href = 'filmes.php?id=<?= $filme['id'] ?>';">
                                                     <img src="<?= htmlspecialchars($filme['poster_url']) ?>" class="card-img-top" alt="<?= htmlspecialchars($filme['titulo']) ?>">
                                                     <div class="card-body text-center">
                                                         <h4 class="card-title mb-1"><?= htmlspecialchars($filme['titulo']) ?></h4>
                                                         <div class="card-actions">
-                                                            <?php if (isset($_SESSION['id'])):
-                                                            // Mostrar botão de favorito apenas para usuários logados
+                                                            <?php if (isset($_SESSION['id'])) :
+
                                                             ?>
                                                                 <?php
                                                                 $isFavorito = false;
@@ -225,13 +218,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </main>
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
-            <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            <a href="index.php">
+                <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
             <nav>
                 <ul class="nav navbar-cinelivro">
                     <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
-                    <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php if (isset($_SESSION['id'])) : ?>
+                        <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php endif; ?>
+                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light">Admin</a></li>
                 </ul>
             </nav>
             <p class="mb-0">&copy; 2025 CineLivro. Todos os direitos reservados.</p>

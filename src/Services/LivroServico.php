@@ -49,7 +49,7 @@ final class LivroServico
         }
     }
 
-    public function buscarPorId(int $id, TipoUsuario $tipoUsuario): ?array
+    public function buscarPorId(int $id): ?array
     {
         $sql = "SELECT livros.*, generos.nome AS genero,
                    GROUP_CONCAT(plataformas.nome SEPARATOR ', ') AS plataformas

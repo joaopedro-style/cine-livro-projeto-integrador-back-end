@@ -227,15 +227,11 @@ main {
 
 .card-body {
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem;
     background: linear-gradient(to bottom, var(--card-bg), var(--card-hover));
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-grow: 1;
-    text-align: center;
-    box-sizing: border-box;
+    justify-content: space-between;
 }
 
 .card-title {
@@ -412,380 +408,6 @@ main {
 
 .login-card a:hover {
     text-decoration: underline;
-}
-
-/* Responsividade */
-@media (max-width: 992px) {
-
-    /* Ajustes para telas menores que 992px (desktops pequenos e tablets grandes) */
-    .bg-cinelivro {
-        padding: 1rem;
-        /* Reduzir padding do header */
-    }
-
-    .logo-img {
-        height: 80px;
-        /* Reduzir tamanho do logo */
-    }
-
-    .search-container {
-        margin-right: 10px;
-        /* Reduzir margin da busca */
-    }
-
-    .search-input {
-        width: 250px;
-        /* Ajustar largura da busca */
-    }
-
-    .navbar-cinelivro {
-        gap: 0.8rem;
-        /* Reduzir espaço entre itens da navegação */
-    }
-
-    .navbar-cinelivro .nav-link {
-        font-size: 1rem;
-        /* Ajustar tamanho da fonte da navegação */
-    }
-
-    .carousel {
-        padding: 0 20px;
-        /* Ajustar padding do carrossel */
-    }
-
-    .card-cinelivro {
-        min-height: 500px;
-        /* Ajustar altura mínima do card */
-        max-height: 500px;
-        /* Ajustar altura máxima do card */
-    }
-
-    .card-img-top {
-        height: 350px;
-        /* Ajustar altura da imagem do card */
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* Ajustes para telas menores que 768px (tablets e celulares grandes) */
-    .bg-cinelivro {
-        flex-direction: column;
-        /* Empilhar itens do header */
-        padding: 1rem;
-    }
-
-    .d-flex.align-items-center.gap-3 {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-        /* Reduzir gap */
-    }
-
-    .search-container {
-        width: 100%;
-        /* Busca ocupa largura total */
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .search-input {
-        width: 100%;
-        /* Input de busca ocupa largura total */
-    }
-
-    nav {
-        width: 100%;
-        /* Navegação ocupa largura total */
-    }
-
-    .navbar-cinelivro {
-        justify-content: space-around;
-        /* Distribuir itens da navegação */
-        gap: 0.5rem;
-    }
-
-    .logo-img {
-        height: 70px;
-        /* Reduzir ainda mais o tamanho do logo */
-    }
-
-    main {
-        padding: 0 0.8rem;
-        /* Reduzir padding horizontal principal */
-    }
-
-    .carousel {
-        padding: 0 10px;
-        /* Ajustar padding do carrossel */
-    }
-
-    .card-cinelivro {
-        min-height: 450px;
-        /* Ajustar altura mínima do card */
-        max-height: 450px;
-        /* Ajustar altura máxima do card */
-    }
-
-    .card-img-top {
-        height: 300px;
-        /* Ajustar altura da imagem do card */
-    }
-
-    .card-title {
-        font-size: 1rem;
-        /* Ajustar tamanho do título do card */
-    }
-
-    /* Ajustes para a página de usuário */
-    .user-profile {
-        padding: 15px;
-    }
-
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-        padding: 15px;
-    }
-
-    .profile-actions {
-        justify-content: center;
-    }
-
-    .profile-stats {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        /* Ajustar colunas das estatísticas */
-        gap: 15px;
-    }
-
-    .section-card {
-        padding: 15px;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-        /* Ajustar tamanho do título da seção */
-    }
-
-    /* Ajustes para o modal de detalhes */
-    .modal-dialog {
-        margin: 1rem;
-        /* Ajustar margem do modal */
-    }
-
-    .detalhes-image {
-        max-height: 300px;
-        /* Ajustar altura máxima da imagem de detalhes */
-    }
-
-    .detalhes-descricao {
-        font-size: 1rem;
-        /* Ajustar tamanho da fonte da descrição */
-    }
-}
-
-@media (max-width: 576px) {
-
-    /* Ajustes para telas menores que 576px (celulares) */
-    .bg-cinelivro {
-        padding: 0.8rem;
-        /* Reduzir padding do header */
-    }
-
-    .logo-img {
-        height: 60px;
-        /* Reduzir tamanho do logo */
-    }
-
-    .search-container {
-        margin-bottom: 8px;
-    }
-
-    .navbar-cinelivro {
-        flex-wrap: wrap;
-        /* Quebrar linha na navegação */
-        justify-content: center;
-        /* Centralizar itens */
-    }
-
-    .navbar-cinelivro .nav-item {
-        margin: 0 5px;
-        /* Espaçamento menor entre itens */
-    }
-
-    .navbar-cinelivro .nav-link {
-        font-size: 0.9rem;
-        /* Reduzir tamanho da fonte da navegação */
-        padding: 0.3rem 0.5rem;
-        /* Reduzir padding dos links */
-    }
-
-    main {
-        padding: 0 0.5rem;
-        /* Reduzir padding horizontal principal */
-    }
-
-    .carousel {
-        padding: 0;
-        /* Remover padding do carrossel em telas muito pequenas */
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 25px;
-        /* Ajustar tamanho dos botões do carrossel */
-        height: 25px;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 12px;
-        /* Ajustar tamanho dos ícones do carrossel */
-        height: 12px;
-    }
-
-    .card-cinelivro {
-        min-height: 380px;
-        /* Ajustar altura mínima do card */
-        max-height: 400px;
-        /* Ajustar altura máxima do card */
-    }
-
-    .card-img-top {
-        height: 250px;
-        /* Ajustar altura da imagem do card */
-    }
-
-    .card-body {
-        padding: 0.6rem;
-    }
-
-    .card-title {
-        font-size: 0.9rem;
-    }
-
-    .login-button {
-        padding: 0.3rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .navbar-toggler {
-        padding: 0.25rem 0.5rem;
-        font-size: 1rem;
-    }
-
-    .navbar-toggler-icon {
-        width: 1em;
-        height: 1em;
-    }
-
-    /* Ajustes para a página de detalhes */
-    .detalhes-image {
-        max-height: 250px;
-        /* Ajustar altura máxima da imagem de detalhes */
-    }
-
-    .detalhes-descricao {
-        font-size: 0.9rem;
-        /* Ajustar tamanho da fonte da descrição */
-    }
-
-    .detalhes-metadata {
-        padding: 0.6rem;
-        /* Reduzir padding dos metadados */
-    }
-
-    .detalhes-metadata p {
-        font-size: 0.85rem;
-        /* Ajustar tamanho da fonte dos metadados */
-    }
-
-    /* Ajustes para a página de perfil */
-    .user-profile {
-        padding: 10px;
-    }
-
-    .profile-header {
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .profile-name {
-        font-size: 1.8rem;
-        /* Ajustar tamanho do nome do perfil */
-    }
-
-    .stat-card {
-        padding: 10px;
-    }
-
-    .stat-icon {
-        font-size: 1.5rem;
-    }
-
-    .stat-number {
-        font-size: 1.5rem;
-    }
-
-    .section-card {
-        padding: 10px;
-    }
-
-    .section-title {
-        font-size: 1.1rem;
-        /* Ajustar tamanho do título da seção */
-    }
-
-    .favorite-item {
-        flex-direction: column;
-        align-items: center;
-        /* Centralizar itens favoritos */
-        text-align: center;
-        padding: 10px;
-    }
-
-    .favorite-image {
-        width: 50px;
-        /* Ajustar tamanho da imagem favorita */
-        height: 75px;
-        margin-bottom: 5px;
-        /* Adicionar espaço abaixo da imagem */
-    }
-
-    .favorite-info {
-        flex: none;
-        /* Remover flex-grow para centralizar */
-    }
-
-    .favorite-info h5 {
-        font-size: 1rem;
-        margin-bottom: 2px;
-    }
-
-    .favorite-info .author {
-        font-size: 0.8rem;
-    }
-
-    .remove-favorite {
-        top: 5px;
-        right: 5px;
-        width: 25px;
-        height: 25px;
-        font-size: 0.8rem;
-    }
-
-    .favorites-list.active {
-        grid-template-columns: 1fr;
-        /* Uma coluna para lista de favoritos */
-    }
-
-    .favorite-button {
-        padding: 6px 12px;
-        /* Reduzir padding do botão de favorito */
-        font-size: 0.7rem;
-        /* Reduzir tamanho da fonte do botão de favorito */
-    }
 }
 
 /* Estilos da Página de Usuário */
@@ -1209,21 +831,6 @@ main {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
 
-/* Responsividade do modal */
-@media (max-width: 768px) {
-    .modal-body .row {
-        flex-direction: column;
-    }
-
-    .modal-body .col-md-4 {
-        margin-bottom: 1rem;
-    }
-
-    .sinopse-text {
-        font-size: 1rem;
-    }
-}
-
 /* Estilos para o formulário de edição de perfil */
 .edit-profile-form {
     max-width: 600px;
@@ -1381,85 +988,127 @@ main {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .modal-dialog {
-        margin: 0.5rem;
+/* Estilos para o botão de favoritos */
+.favorite-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.favorite-button:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+}
+
+.favorite-button.favorito {
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.favorite-button.favorito:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.favorite-button i {
+    font-size: 1.1rem;
+}
+
+/* Animação para o ícone de coração */
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
     }
 
-    .detalhes-image {
-        max-height: 400px;
+    50% {
+        transform: scale(1.2);
     }
 
-    .detalhes-info {
-        padding: 0.5rem;
-    }
-
-    .detalhes-descricao {
-        font-size: 1rem;
+    100% {
+        transform: scale(1);
     }
 }
 
-@media (max-width: 576px) {
-    .card-img-top {
-        height: 250px;
+.favorite-button.favorito i {
+    animation: heartBeat 0.3s ease-in-out;
+}
+
+@media (max-width: 1025px) {
+    .search-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .bg-cinelivro {
+        flex-direction: column;
+        padding: 1rem;
     }
 
-    .detalhes-image {
-        max-height: 300px;
+    .d-flex.align-items-center.gap-3 {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
     }
 
-    /* Estilos para o botão de favoritos */
-    .favorite-button {
-        background: none;
-        border: none;
-        color: #666;
-        cursor: pointer;
-        padding: 8px 12px;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
+    .search-container {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+
+    .search-input {
         width: 100%;
     }
 
-    .favorite-button:hover {
-        background-color: rgba(255, 0, 0, 0.1);
-        color: #ff0000;
+    nav {
+        width: 100%;
     }
 
-    .favorite-button.favorito {
-        color: #ff0000;
-        background-color: rgba(255, 0, 0, 0.1);
+    .navbar-cinelivro {
+        justify-content: space-around;
+        gap: 0.5rem;
+        flex-wrap: wrap;
     }
 
-    .favorite-button.favorito:hover {
-        background-color: rgba(255, 0, 0, 0.2);
+    .logo-img {
+        height: 70px;
     }
 
-    .favorite-button i {
-        font-size: 1.1rem;
+    .carousel {
+        padding: 0 25px;
     }
 
-    /* Animação para o ícone de coração */
-    @keyframes heartBeat {
-        0% {
-            transform: scale(1);
-        }
-
-        50% {
-            transform: scale(1.2);
-        }
-
-        100% {
-            transform: scale(1);
-        }
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 25px;
+        height: 25px;
     }
 
-    .favorite-button.favorito i {
-        animation: heartBeat 0.3s ease-in-out;
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 12px;
+        height: 12px;
+    }
+
+    .card-cinelivro {
+        min-height: 450px;
+        max-height: 450px;
+    }
+
+    .card-img-top {
+        height: 300px;
+    }
+
+    .card-title {
+        font-size: 1rem;
     }
 }

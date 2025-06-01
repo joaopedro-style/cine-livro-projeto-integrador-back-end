@@ -72,40 +72,26 @@ if (isset($_POST["cadastrar"])) {
 </head>
 
 <body>
-    <header class="bg-cinelivro border-bottom border-dark py-3 mb-4">
-        <div class="container d-flex flex-wrap justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <a href="index.php">
-                    <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
-                </a>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="Buscar filmes, livros...">
-                    <button class="search-button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <nav>
-                    <ul class="nav navbar-cinelivro">
-                        <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
-                        <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
-                        <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="index.php">
+                <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-cinelivro">
+                    <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
+                    <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
+                    <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
+                    <?php if (isset($_SESSION['id'])) : ?>
                         <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
-                    </ul>
-                </nav>
-                <?php if (!isset($_SESSION['id'])) { ?>
-                    <a href="login.php" class="login-button">
-                        <i class="fas fa-user"></i> Login
-                    </a>
-                <?php } else { ?>
-                    <a href="?sair" class="login-button">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                <?php } ?>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main class="container mt-5">
         <div class="row justify-content-center">
@@ -169,13 +155,18 @@ if (isset($_POST["cadastrar"])) {
     </main>
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
-            <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            <a href="index.php">
+                <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
             <nav>
                 <ul class="nav navbar-cinelivro">
                     <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
-                    <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php if (isset($_SESSION['id'])) : ?>
+                        <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <?php endif; ?>
+                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light">Admin</a></li>
                 </ul>
             </nav>
             <p class="mb-0">&copy; 2025 CineLivro. Todos os direitos reservados.</p>
@@ -183,7 +174,6 @@ if (isset($_POST["cadastrar"])) {
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script src="js/busca.js"></script>
 </body>
 
 </html>

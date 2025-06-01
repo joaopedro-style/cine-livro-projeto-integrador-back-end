@@ -1,5 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
+
 use CineLivro\Auth\ControleDeAcesso;
 use CineLivro\Services\UsuarioServico;
 use CineLivro\Helpers\Utils;
@@ -22,11 +23,10 @@ if (!$usuario) {
     exit;
 }
 
-// Buscar filmes e livros favoritos
 try {
     $filmeServico = new FilmeServico();
     $livroServico = new LivroServico();
-    
+
     $sql = "SELECT f.*, ff.id as favorito_id 
             FROM filmes f 
             INNER JOIN filmes_favoritos ff ON f.id = ff.filme_id 
@@ -201,16 +201,16 @@ if (isset($_POST["atualizar"])) {
                 <h2 class="section-title"><i class="fas fa-heart"></i> Filmes favoritos</h2>
                 <div class="favorites-content">
                     <div class="favorites-list active" id="filmes">
-                        <?php foreach ($filmesFavoritos as $filme): ?>
-                        <div class="favorite-item">
-                            <img src="<?= htmlspecialchars($filme['poster_url']) ?>" alt="<?= htmlspecialchars($filme['titulo']) ?>" class="favorite-image">
-                            <div class="favorite-info">
-                                <h5><?= htmlspecialchars($filme['titulo']) ?></h5>
+                        <?php foreach ($filmesFavoritos as $filme) : ?>
+                            <div class="favorite-item">
+                                <img src="<?= htmlspecialchars($filme['poster_url']) ?>" alt="<?= htmlspecialchars($filme['titulo']) ?>" class="favorite-image">
+                                <div class="favorite-info">
+                                    <h5><?= htmlspecialchars($filme['titulo']) ?></h5>
+                                </div>
+                                <button class="remove-favorite" title="Remover dos favoritos" data-id="<?= $filme['id'] ?>" data-tipo="filme">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <button class="remove-favorite" title="Remover dos favoritos" data-id="<?= $filme['id'] ?>" data-tipo="filme">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -220,16 +220,16 @@ if (isset($_POST["atualizar"])) {
                 <h2 class="section-title"><i class="fas fa-heart"></i> Livros favoritos</h2>
                 <div class="favorites-content">
                     <div class="favorites-list active" id="livros">
-                        <?php foreach ($livrosFavoritos as $livro): ?>
-                        <div class="favorite-item">
-                            <img src="<?= htmlspecialchars($livro['imagem_capa_url']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" class="favorite-image">
-                            <div class="favorite-info">
-                                <h5><?= htmlspecialchars($livro['titulo']) ?></h5>
+                        <?php foreach ($livrosFavoritos as $livro) : ?>
+                            <div class="favorite-item">
+                                <img src="<?= htmlspecialchars($livro['imagem_capa_url']) ?>" alt="<?= htmlspecialchars($livro['titulo']) ?>" class="favorite-image">
+                                <div class="favorite-info">
+                                    <h5><?= htmlspecialchars($livro['titulo']) ?></h5>
+                                </div>
+                                <button class="remove-favorite" title="Remover dos favoritos" data-id="<?= $livro['id'] ?>" data-tipo="livro">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <button class="remove-favorite" title="Remover dos favoritos" data-id="<?= $livro['id'] ?>" data-tipo="livro">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -239,13 +239,16 @@ if (isset($_POST["atualizar"])) {
 
     <footer class="footer-cinelivro text-center py-3 mt-5">
         <div class="container d-flex justify-content-center align-items-center gap-4">
-            <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            <a href="index.php">
+                <img src="imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" class="logo-img">
+            </a>
             <nav>
                 <ul class="nav navbar-cinelivro">
                     <li class="nav-item"><a href="index.php" class="nav-link text-light">Home</a></li>
                     <li class="nav-item"><a href="filmes.php" class="nav-link text-light">Filmes</a></li>
                     <li class="nav-item"><a href="livros.php" class="nav-link text-light">Livros</a></li>
                     <li class="nav-item"><a href="usuario.php" class="nav-link text-light">Perfil</a></li>
+                    <li class="nav-item"><a href="login-admin.php" class="nav-link text-light">Admin</a></li>
                 </ul>
             </nav>
             <p class="mb-0">&copy; 2025 CineLivro. Todos os direitos reservados.</p>

@@ -3,12 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchButton = document.querySelector('.search-button');
     let searchTimeout;
 
-    // Criar o container de resultados
     const resultadosContainer = document.createElement('div');
     resultadosContainer.className = 'search-results';
     document.querySelector('.search-container').appendChild(resultadosContainer);
 
-    // Criar o modal para sinopse
     const modalHTML = `
         <div class="modal fade" id="sinopseModal" tabindex="-1" aria-labelledby="sinopseModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -36,10 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-    // Inicializar o modal do Bootstrap
     const sinopseModal = new bootstrap.Modal(document.getElementById('sinopseModal'));
 
-    // Função para exibir a sinopse
     window.exibirSinopse = function(item) {
         const modal = document.getElementById('sinopseModal');
         if (!modal) {
@@ -59,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Função para realizar a busca
     async function realizarBusca(termo) {
         if (!termo.trim()) {
             resultadosContainer.style.display = 'none';
@@ -82,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Criar HTML dos resultados
             const html = data.resultados.map(item => `
                 <div class="search-result-item" onclick="window.location.href = '${item.url}';">
                     <img src="${item.imagem}" alt="${item.titulo}" class="search-result-image">
@@ -104,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Evento de digitação
     searchInput.addEventListener('input', function() {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
@@ -112,19 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     });
 
-    // Evento de clique no botão
     searchButton.addEventListener('click', function() {
         realizarBusca(searchInput.value);
     });
 
-    // Evento de tecla Enter
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             realizarBusca(this.value);
         }
     });
 
-    // Fechar resultados ao clicar fora
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.search-container')) {
             resultadosContainer.style.display = 'none';
