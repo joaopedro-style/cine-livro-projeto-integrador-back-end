@@ -1,4 +1,4 @@
-# cine-livro
+# Cine-Livro
 
 - uma plataforma que permite aos usuários explorar, buscar, favoritar e gerenciar informações sobre filmes e livros. O projeto oferece funcionalidades como autenticação de usuários, sistema de favoritos e operações CRUD básicas para filmes e livros.
 
