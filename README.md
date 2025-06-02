@@ -21,5 +21,25 @@
 
 ## Como Executar o projeto
 
+1) Clone este repositório: `git clone` (https://github.com/joaopedro-style/cine-livro-projeto-integrador-back-end.git)
 
+2) Instale as dependências PHP: vai no `terminal` e seleciona o `command prompt` e digite `composer install` para instalar o composer.
+
+3) Crie o banco de dados `MySQL` chamado de `cine_livro` e execute o script SQL de criação criando as seguintes tabelas: `usuarios`, `filmes`, `livros`, `generos`, `plataformas`, `filmes_favoritos`, `livros_favoritos`, `filmes_plataformas` e `livros_plataformas`.
+
+4) Configure suas credenciais do banco no arquivo de conexão `conecta.php` ou diretamente nos arquivos PHP.
+
+5) Execute o projeto localmente com um servidor local `XAMPP` ou suba para um servidor PHP.
+
+6) Acesse via navegador: (http://localhost/cine-livro-projeto-integrador-back-end/)
+
+## Contribuidores
+
+- João Pedro
+
+- Paulo
+
+## Licença do projeto
+
+- Este projeto é de uso acadêmico, Licença livre para aprendizado e desenvolvimento.
 
