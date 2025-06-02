@@ -1,6 +1,6 @@
 # Cine-Livro
 
-- uma plataforma que permite aos usuários explorar, buscar, favoritar e gerenciar informações sobre filmes e livros. O projeto oferece funcionalidades como autenticação de usuários, sistema de favoritos e operações CRUD básicas para filmes e livros.
+- O **Cine Livro** é uma plataforma que permite aos usuários explorar, buscar, favoritar e gerenciar informações sobre filmes e livros. O projeto oferece funcionalidades como autenticação de usuários, sistema de favoritos e operações CRUD básicas para filmes e livros.
 
 ## Funcionalidades do projeto
 
@@ -14,24 +14,43 @@
 
 ## Tecnologias Utilizadas
 
-- Linguagem: PHP, HTML, CSS e js
-- Banco de Dados: MySQL (ou MariaDB)
-- Gerenciamento de Dependências: Composer
-- Controle de Versão: Git
+- **Linguagens:** PHP, HTML, CSS e JavaScript
+- **Banco de Dados:** MySQL (ou MariaDB)
+- **Gerenciamento de Dependências:** Composer
+- **Controle de Versão:** Git
 
 ## Como Executar o projeto
 
-1) Clone este repositório: `git clone` (https://github.com/joaopedro-style/cine-livro-projeto-integrador-back-end.git)
+1) [Clone este repositório no GitHub](https://github.com/joaopedro-style/cine-livro-projeto-integrador-back-end)
 
-2) Instale as dependências PHP: vai no `terminal` e seleciona o `command prompt` e digite `composer install` para instalar o composer.
+2) Instale as dependências PHP: Abra o terminal (`Prompt de Comando`, `CMD`) e digite: `composer install` para instalar o composer.
 
-3) Crie o banco de dados `MySQL` chamado de `cine_livro` e execute o script SQL de criação criando as seguintes tabelas: `usuarios`, `filmes`, `livros`, `generos`, `plataformas`, `filmes_favoritos`, `livros_favoritos`, `filmes_plataformas` e `livros_plataformas`.
+3) Crie o banco de dados `MySQL` chamado de `cine_livro` e execute o script SQL de criação criando as
+seguintes tabelas:
+
+- usuarios
+
+- filmes
+
+- livros
+
+- generos
+
+- plataformas
+
+- filmes_favoritos
+
+- livros_favoritos
+
+- filmes_plataformas
+
+- livros_plataformas
 
 4) Configure suas credenciais do banco no arquivo de conexão `conecta.php` ou diretamente nos arquivos PHP.
 
 5) Execute o projeto localmente com um servidor local `XAMPP` ou suba para um servidor PHP.
 
-6) Acesse via navegador: (http://localhost/cine-livro-projeto-integrador-back-end/)
+6) [Acesse via navegador](http://localhost/cine-livro-projeto-integrador-back-end/)
 
 ## Contribuidores
 
