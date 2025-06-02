@@ -118,7 +118,7 @@ if (isset($_POST["cadastrar"])) {
                             <script>
                                 setTimeout(function() {
                                     window.location.href = 'index.php';
-                                }, 3000);
+                                }, 2000);
                             </script>
                             <?php unset($_SESSION['success_redirect']); ?>
                         <?php endif; ?>
