@@ -30,7 +30,7 @@ if (isset($_POST["cadastrar"])) {
         $poster_url = Utils::sanitizar($_POST["poster_url"]);
         $genero_id = (int) Utils::sanitizar($_POST["genero_id"], "inteiro");
         $usuario_id = $_SESSION["id"];
-        $plataformasSelecionadas = $_POST["plataformas"] ?? [];
+        $plataformaId = isset($_POST["plataforma"]) ? (int) $_POST["plataforma"] : null;
 
         $filme = new Filme(
             $titulo,
@@ -42,12 +42,13 @@ if (isset($_POST["cadastrar"])) {
             $poster_url,
             $usuario_id,
             $genero_id,
+            $plataformaId
         );
 
         $filmeId = $filmeServico->cadastrarRetornandoId($filme, TipoUsuario::ADMIN);
 
-        foreach ($plataformasSelecionadas as $plataformaId) {
-            $filmeServico->adicionarFilmePlataforma($filmeId, (int)$plataformaId);
+        if ($plataformaId !== null) {
+            $filmeServico->adicionarFilmePlataforma($filmeId, $plataformaId);
         }
 
         header("location:filme.php");
