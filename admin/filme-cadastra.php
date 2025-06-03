@@ -7,14 +7,17 @@ use CineLivro\Helpers\Utils;
 use CineLivro\Models\Filme;
 use CineLivro\Services\FilmeServico;
 use CineLivro\Services\GeneroServico;
+use CineLivro\Services\PlataformaServico;
 
 ControleDeAcesso::exigirAdmin();
 
 $mensagemDeErro = "";
 $filmeServico = new FilmeServico();
 $generoServico = new GeneroServico();
+$plataformaServico = new PlataformaServico();
 
 $listaDeGeneros = $generoServico->listarTodos();
+$listaDePlataformas = $plataformaServico->listarTodos();
 
 if (isset($_POST["cadastrar"])) {
     try {
@@ -27,6 +30,7 @@ if (isset($_POST["cadastrar"])) {
         $poster_url = Utils::sanitizar($_POST["poster_url"]);
         $genero_id = (int) Utils::sanitizar($_POST["genero_id"], "inteiro");
         $usuario_id = $_SESSION["id"];
+        $plataformasSelecionadas = $_POST["plataformas"] ?? [];
 
         $filme = new Filme(
             $titulo,
@@ -37,10 +41,14 @@ if (isset($_POST["cadastrar"])) {
             $descricao,
             $poster_url,
             $usuario_id,
-            $genero_id
+            $genero_id,
         );
 
-        $filmeServico->cadastrar($filme, TipoUsuario::ADMIN);
+        $filmeId = $filmeServico->cadastrarRetornandoId($filme, TipoUsuario::ADMIN);
+
+        foreach ($plataformasSelecionadas as $plataformaId) {
+            $filmeServico->adicionarFilmePlataforma($filmeId, (int)$plataformaId);
+        }
 
         header("location:filme.php");
         exit;
@@ -51,7 +59,6 @@ if (isset($_POST["cadastrar"])) {
 }
 
 require_once "../includes/cabecalho-admin.php";
-
 ?>
 
 <div class="container my-5">
@@ -102,6 +109,20 @@ require_once "../includes/cabecalho-admin.php";
                         <option value="<?= $genero['id'] ?>"><?= $genero['nome'] ?></option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+
+            <div class="mb-3 text-white">
+                <label class="form-label">Plataformas:</label>
+                <div class="d-flex flex-wrap">
+                    <?php foreach ($listaDePlataformas as $index => $plataforma) : ?>
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="plataforma" value="<?= $plataforma['id'] ?>" id="plataforma<?= $plataforma['id'] ?>" <?= $index === 0 ? 'required' : '' ?>>
+                            <label class="form-check-label" for="plataforma<?= $plataforma['id'] ?>">
+                                <?= $plataforma['nome'] ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <div class="mb-3 text-white">

@@ -233,11 +233,59 @@ final class FilmeServico
             $consulta->bindValue(':usuarioId', $usuario_id, PDO::PARAM_INT);
             $consulta->bindValue(':filmeId', $filme_id, PDO::PARAM_INT);
             $consulta->execute();
-            
+
             return $consulta->fetchColumn() > 0;
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
             throw new Exception("Erro ao verificar favorito. Fale com o Suporte.");
+        }
+    }
+
+    public function cadastrarRetornandoId(Filme $filme, TipoUsuario $tipoUsuario): int
+    {
+        if ($tipoUsuario !== TipoUsuario::ADMIN) {
+            throw new Exception("Acesso negado.");
+        }
+
+        $sql = "INSERT INTO filmes (
+            titulo, diretor, data_lancamento, duracao, classificacao,
+            descricao, poster_url, usuario_id, genero_id
+        ) VALUES (
+            :titulo, :diretor, :data_lancamento, :duracao, :classificacao,
+            :descricao, :poster_url, :usuario_id, :genero_id
+        )";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", $filme->getTitulo(), PDO::PARAM_STR);
+            $consulta->bindValue(":diretor", $filme->getDiretor(), PDO::PARAM_STR);
+            $consulta->bindValue(":data_lancamento", $filme->getData_lancamento(), PDO::PARAM_STR);
+            $consulta->bindValue(":duracao", $filme->getDuracao(), PDO::PARAM_INT);
+            $consulta->bindValue(":classificacao", $filme->getClassificacao(), PDO::PARAM_STR);
+            $consulta->bindValue(":descricao", $filme->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":poster_url", $filme->getPoster_url(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $filme->getUsuario_id(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $filme->getGenero_id(), PDO::PARAM_INT);
+            $consulta->execute();
+
+            return (int) $this->conexao->lastInsertId();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao inserir filme.");
+        }
+    }
+
+    public function adicionarFilmePlataforma(int $filmeId, int $plataformaId): void
+    {
+        $sql = "INSERT INTO filmes_plataformas (filme_id, plataforma_id) VALUES (:filmeId, :plataformaId)";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(':filmeId', $filmeId, PDO::PARAM_INT);
+            $consulta->bindValue(':plataformaId', $plataformaId, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao associar filme à plataforma.");
         }
     }
 }

@@ -170,16 +170,27 @@ VALUES(
     6
 ),
 (
-    'Godzilla e Kong: O Novo Império',
-    'Adam Wingard',
-    '2024-07-04',
-    115,
+    'Sonic 3: O Filme',
+    'Jeff Fowler',
+    '2024-12-25',
+    110,
     '12 anos',
-    'Após os eventos de Godzilla vs. Kong (2021), os dois titãs devem unir forças para enfrentar uma nova ameaça colossal oculta no mundo subterrâneo.',
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fWSGD2yrzz6hscocnMD8AEXIThk.jpg',
-    1,
+    'Sonic, Knuckles e Tails reúnem-se contra um novo e poderoso adversário, Shadow, um vilão misterioso com poderes diferentes de tudo o que alguma vez tiveram de enfrentar.',
+    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tfM1T6tAivjvy0sLwt6Y9WvlmzB.jpg',
+    12,
     6
-);
+)
+(
+    'Venom: A Última Dança',
+    'Kelly Marcel',
+    '2024-10-24',
+    110,
+    '14 anos',
+    'Eddie e Venom estão em fuga. Perseguidos pelos seus dois mundos e com o cerco a apertar, a dupla é forçada a tomar uma decisão devastadora que resultará na última dança de ambos.',
+    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/p8CHaGudwUzBSU7dTjzMd71Iv4M.jpg',
+    12,
+    2
+),
 ```
 
 ```sql
@@ -253,6 +264,16 @@ VALUES(
     'https://m.media-amazon.com/images/I/91crvEm6SwL._SL1500_.jpg',
     5,
     5
+),
+(
+    'Dom Quixote',
+    'Miguel de Cervantes',
+    '2023-09-25',
+    'Adulto',
+    'Dom Quixote, escrito pelo espanhol Miguel de Cervantes, é umclássico da literatura mundial e uma das obras mais influentesda história.',
+    'https://m.media-amazon.com/images/I/716YWt8LnCL._SL1419_.jpg',
+    12,
+    10
 );
 ```
 
