@@ -40,7 +40,7 @@ final class ControleDeAcesso
         exit;
     }
 
-    public static function logoutadmin(): void
+    public static function logoutAdmin(): void
     {
         self::iniciarsessao();
         session_destroy();
