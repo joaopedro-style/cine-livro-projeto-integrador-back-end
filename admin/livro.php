@@ -16,7 +16,7 @@ require_once "../includes/cabecalho-admin.php";
 
 ?>
 <div class="container my-5">
-    <article class="col-12 bg-black rounded shadow py-4">
+    <article class="col-12 bg-dark rounded shadow py-4">
 
         <h2 class="text-center text-white">
             Livros <span class="badge bg-gradient"> <?= count($listaDeLivros) ?> </span>

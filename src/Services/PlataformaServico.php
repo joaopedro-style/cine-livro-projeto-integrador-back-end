@@ -45,7 +45,7 @@ final class PlataformaServico
         }
     }
 
-    public function inserir(Plataforma $plataforma): void
+    public function cadastrar(Plataforma $plataforma): void
     {
         $sql = "INSERT INTO plataformas (nome) VALUES(:nome)";
         try {

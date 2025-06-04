@@ -45,7 +45,7 @@ final class GeneroServico
         }
     }
 
-    public function inserir(Genero $genero): void
+    public function cadastrar(Genero $genero): void
     {
         $sql = "INSERT INTO generos (nome) VALUES(:nome)";
         try {

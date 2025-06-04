@@ -20,15 +20,15 @@ if (isset($_GET['sair']))
 
 </head>
 
-<body id="admin" class="d-flex flex-column bg-dark">
+<body id="admin" class="d-flex flex-column bg-black">
 
     <header id="topo" class="sticky-top">
 
-        <nav class="navbar navbar-expand-lg py-5 navbar-dark bg-black justify-content-between">
+        <nav class="navbar navbar-expand-lg py-5 navbar-dark bg-dark justify-content-between">
             <div class="container">
                 <h1>
                     <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
-                        <img src="../imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" style="height: 95px; border-radius: 50%;">
+                        <img src="../imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" style="height: 100px; border-radius: 50%;">
                     </a>
                 </h1>
 

@@ -9,7 +9,7 @@ ControleDeAcesso::exigirAdmin();
 require_once "../includes/cabecalho-admin.php";
 ?>
 <div class="container my-5">
-    <article class="p-5 my-4 rounded-3 bg-black shadow">
+    <article class="p-5 my-4 rounded-3 bg-dark shadow">
 
         <h2 class="text-white display-4">Bem-Vindo <?= $_SESSION['nome'] ?>!</h2>
 
