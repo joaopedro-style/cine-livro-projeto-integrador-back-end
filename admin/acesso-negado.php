@@ -9,7 +9,7 @@ require_once "../includes/cabecalho-admin.php";
         <div class="container-fluid py-1">
             <h2 class="display-4 bg-danger rounded text-center text-white">Acesso Negado!</h2>
             <hr class="my-4">
-            <p class="fs-5 text-center text-white"><span style="font-size: 27px;"><b><?= $_SESSION["nome"] ?></b></span>
+            <p class="fs-5 text-center text-white"><span style="font-size: 27px; margin-right: 10px;"><b><?= $_SESSION["nome"] ?></b></span>
                 você não tem permissão para acessar este recurso.</p>
             <hr class="my-5">
             <p>
