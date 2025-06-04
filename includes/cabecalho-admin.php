@@ -14,7 +14,6 @@ if (isset($_GET['sair']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Cine Livro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-admin.png">
@@ -27,7 +26,11 @@ if (isset($_GET['sair']))
 
         <nav class="navbar navbar-expand-lg py-5 navbar-dark bg-black justify-content-between">
             <div class="container">
-                <h1><a class="navbar-brand" href="index.php"><i class="bi bi-unlock"></i> Admin | Cine Livro</a></h1>
+                <h1>
+                    <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
+                        <img src="../imagens/cinelivro_logo_transparente.png" alt="Logo CineLivro" style="height: 95px; border-radius: 50%;">
+                    </a>
+                </h1>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -2,7 +2,6 @@
 require_once "../vendor/autoload.php";
 
 use CineLivro\Auth\ControleDeAcesso;
-use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
 use CineLivro\Models\Filme;
 use CineLivro\Services\FilmeServico;
@@ -45,7 +44,7 @@ if (isset($_POST["cadastrar"])) {
             $plataformaId
         );
 
-        $filmeId = $filmeServico->cadastrarRetornandoId($filme, TipoUsuario::ADMIN);
+        $filmeId = $filmeServico->retornandoId($filme);
 
         if ($plataformaId !== null) {
             $filmeServico->adicionarFilmePlataforma($filmeId, $plataformaId);
@@ -113,7 +112,7 @@ require_once "../includes/cabecalho-admin.php";
             </div>
 
             <div class="mb-3 text-white">
-                <label class="form-label">Plataformas:</label>
+                <label class="form-label">Plataforma:</label>
                 <div class="d-flex flex-wrap">
                     <?php foreach ($listaDePlataformas as $index => $plataforma) : ?>
                         <div class="form-check me-3">

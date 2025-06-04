@@ -230,11 +230,52 @@ final class LivroServico
             $consulta->bindValue(':usuarioId', $usuario_id, PDO::PARAM_INT);
             $consulta->bindValue(':livroId', $livro_id, PDO::PARAM_INT);
             $consulta->execute();
-            
+
             return $consulta->fetchColumn() > 0;
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
             throw new Exception("Erro ao verificar favorito. Fale com o Suporte.");
+        }
+    }
+
+    public function retornandoId(Livro $livro): int
+    {
+        $sql = "INSERT INTO livros (
+            titulo, autor, data_lancamento, faixa_etaria, descricao, imagem_capa_url, usuario_id, genero_id
+        ) VALUES (
+            :titulo, :autor, :data_lancamento, :faixa_etaria, :descricao, :imagem_capa_url, :usuario_id, :genero_id
+        )";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":titulo", $livro->getTitulo(), PDO::PARAM_STR);
+            $consulta->bindValue(":autor", $livro->getAutor(), PDO::PARAM_STR);
+            $consulta->bindValue(":data_lancamento", $livro->getData_lancamento(), PDO::PARAM_STR);
+            $consulta->bindValue(":faixa_etaria", $livro->getFaixa_etaria(), PDO::PARAM_STR);
+            $consulta->bindValue(":descricao", $livro->getDescricao(), PDO::PARAM_STR);
+            $consulta->bindValue(":imagem_capa_url", $livro->getImagem_capa_url(), PDO::PARAM_STR);
+            $consulta->bindValue(":usuario_id", $livro->getUsuario_id(), PDO::PARAM_INT);
+            $consulta->bindValue(":genero_id", $livro->getGenero_id(), PDO::PARAM_INT);
+            $consulta->execute();
+
+            return (int) $this->conexao->lastInsertId();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao retornar id do livro.");
+        }
+    }
+
+    public function adicionarLivroPlataforma(int $livroId, int $plataformaId): void
+    {
+        $sql = "INSERT INTO livros_plataformas (livro_id, plataforma_id) VALUES (:livroId, :plataformaId)";
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(':livroId', $livroId, PDO::PARAM_INT);
+            $consulta->bindValue(':plataformaId', $plataformaId, PDO::PARAM_INT);
+            $consulta->execute();
+        } catch (Throwable $erro) {
+            Utils::registrarLog($erro);
+            throw new Exception("Erro ao associar livro à plataforma.");
         }
     }
 }

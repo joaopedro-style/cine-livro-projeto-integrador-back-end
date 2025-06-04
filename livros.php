@@ -123,7 +123,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                 <p><strong>Data de Lançamento:</strong> <?= htmlspecialchars($livro['data_lancamento'] ? (new DateTime($livro['data_lancamento']))->format('d/m/Y') : 'Não informada') ?></p>
                                 <p><strong>Faixa Etária:</strong> <?= htmlspecialchars($livro['faixa_etaria'] ?? 'Não informada') ?></p>
                                 <p><strong>Gênero:</strong> <?= htmlspecialchars($livro['genero'] ?? 'Não informado') ?></p>
-                                <p><strong>Plataformas:</strong> <?= htmlspecialchars($livro['plataformas'] ?? 'Não informadas') ?></p>
+                                <p><strong>Plataforma:</strong> <?= htmlspecialchars($livro['plataformas'] ?? 'Não informadas') ?></p>
                             </div>
                             <?php if (isset($_SESSION['id'])) :
 

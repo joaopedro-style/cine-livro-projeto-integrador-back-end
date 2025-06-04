@@ -126,7 +126,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                 <p><strong>Data de Lançamento:</strong> <?= htmlspecialchars($filme['data_lancamento'] ? (new DateTime($filme['data_lancamento']))->format('d/m/Y') : 'Não informada') ?></p>
                                 <p><strong>Classificação:</strong> <?= htmlspecialchars($filme['classificacao'] ?? 'Não informada') ?></p>
                                 <p><strong>Gênero:</strong> <?= htmlspecialchars($filme['genero'] ?? 'Não informado') ?></p>
-                                <p><strong>Plataformas:</strong> <?= htmlspecialchars($filme['plataformas'] ?? 'Não informadas') ?></p>
+                                <p><strong>Plataforma:</strong> <?= htmlspecialchars($filme['plataformas'] ?? 'Não informadas') ?></p>
                             </div>
                             <?php if (isset($_SESSION['id'])) :
                             ?>

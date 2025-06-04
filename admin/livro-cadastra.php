@@ -1,11 +1,11 @@
 <?php
 
 use CineLivro\Auth\ControleDeAcesso;
-use CineLivro\Enums\TipoUsuario;
 use CineLivro\Helpers\Utils;
 use CineLivro\Models\Livro;
 use CineLivro\Services\GeneroServico;
 use CineLivro\Services\LivroServico;
+use CineLivro\Services\PlataformaServico;
 
 require_once "../vendor/autoload.php";
 
@@ -14,8 +14,10 @@ ControleDeAcesso::exigirAdmin();
 $mensagemDeErro = "";
 $livroServico = new LivroServico();
 $generoServico = new GeneroServico();
+$plataformaServico = new PlataformaServico();
 
 $listaDeGeneros = $generoServico->listarTodos();
+$listaDePlataformas = $plataformaServico->listarTodos();
 
 if (isset($_POST["cadastrar"])) {
     try {
@@ -27,14 +29,19 @@ if (isset($_POST["cadastrar"])) {
         $imagem_capa_url = Utils::sanitizar($_POST["imagem_capa_url"]);
         $genero_id = (int) Utils::sanitizar($_POST["genero_id"], "inteiro");
         $usuario_id = $_SESSION["id"];
+        $plataformaId = isset($_POST["plataforma"]) ? (int) $_POST["plataforma"] : null;
 
         if (empty($titulo) || empty($autor) || empty($data_lancamento) || empty($genero_id)) {
             throw new Exception("Preencha todos os campos.");
         }
 
-        $livro = new Livro($titulo, $autor, $data_lancamento, $faixa_etaria, $descricao, $imagem_capa_url, $usuario_id, $genero_id);
+        $livro = new Livro($titulo, $autor, $data_lancamento, $faixa_etaria, $descricao, $imagem_capa_url, $usuario_id, $genero_id, $plataformaId);
 
-        $livroServico->cadastrar($livro, TipoUsuario::ADMIN);
+        $livroId = $livroServico->retornandoId($livro);
+
+        if ($plataformaId !== null) {
+            $livroServico->adicionarLivroPlataforma($livroId, $plataformaId);
+        }
 
         header("location:livro.php");
         exit;
@@ -80,7 +87,7 @@ require_once "../includes/cabecalho-admin.php";
 
             <div class="mb-3 text-white">
                 <label class="form-label" for="faixa_etaria">Faixa etaria:</label>
-                <input class="form-control" type="text" id="faixa_etaria" name="faixa_etaria">
+                <input class="form-control" type="text" id="faixa_etaria" name="faixa_etaria" required>
             </div>
 
             <div class="mb-3 text-white">
@@ -91,6 +98,20 @@ require_once "../includes/cabecalho-admin.php";
                         <option value="<?= $genero['id'] ?>"><?= $genero['nome'] ?></option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+
+            <div class="mb-3 text-white">
+                <label class="form-label">Plataforma:</label>
+                <div class="d-flex flex-wrap">
+                    <?php foreach ($listaDePlataformas as $index => $plataforma) : ?>
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="plataforma" value="<?= $plataforma['id'] ?>" id="plataforma<?= $plataforma['id'] ?>" <?= $index === 0 ? 'required' : '' ?>>
+                            <label class="form-check-label" for="plataforma<?= $plataforma['id'] ?>">
+                                <?= $plataforma['nome'] ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <div class="mb-3 text-white">

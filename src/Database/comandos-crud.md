@@ -117,7 +117,7 @@ VALUES(
 (
     'Deadpool & Wolverine',
     'David Leitch',
-    '2018-05-18',
+    '2024-07-25',
     119,
     '18 anos',
     'Wade Wilson, o Deadpool, volta para uma nova jornada ao lado de uma equipe de mutantes.',
@@ -127,7 +127,7 @@ VALUES(
 ),
 (
     'Moana 2',
-    ' Dana Ledoux Miller',
+    'Dana Ledoux Miller',
     '2024-11-28',
     100,
     'Livre',
@@ -139,7 +139,7 @@ VALUES(
 (
     'Meu Malvado Favorito 4',
     'Kyle Balda',
-    '2022-07-01',
+    '2024-07-04',
     87,
     'Livre',
     'O filme é uma continuação da saga Meu Malvado Favorito, focando no crescimento do jovem Gru.',

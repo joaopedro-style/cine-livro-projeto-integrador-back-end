@@ -241,12 +241,8 @@ final class FilmeServico
         }
     }
 
-    public function cadastrarRetornandoId(Filme $filme, TipoUsuario $tipoUsuario): int
+    public function retornandoId(Filme $filme): int
     {
-        if ($tipoUsuario !== TipoUsuario::ADMIN) {
-            throw new Exception("Acesso negado.");
-        }
-
         $sql = "INSERT INTO filmes (
             titulo, diretor, data_lancamento, duracao, classificacao,
             descricao, poster_url, usuario_id, genero_id
@@ -271,7 +267,7 @@ final class FilmeServico
             return (int) $this->conexao->lastInsertId();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
-            throw new Exception("Erro ao inserir filme.");
+            throw new Exception("Erro ao retornar id do filme.");
         }
     }
 
