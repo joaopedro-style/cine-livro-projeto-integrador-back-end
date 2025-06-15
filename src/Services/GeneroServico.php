@@ -65,6 +65,7 @@ final class GeneroServico
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":nome", $genero->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":id", $genero->getId(), PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);

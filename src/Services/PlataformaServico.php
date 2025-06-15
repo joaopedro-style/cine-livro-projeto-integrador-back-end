@@ -65,6 +65,7 @@ final class PlataformaServico
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":nome", $plataforma->getNome(), PDO::PARAM_STR);
+            $consulta->bindValue(":id", $plataforma->getId(), PDO::PARAM_INT);
             $consulta->execute();
         } catch (Throwable $erro) {
             Utils::registrarLog($erro);
